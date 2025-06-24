@@ -1,0 +1,27 @@
+HOW TO ADD YOUR IMAGES TO THE WEBSITE
+=====================================
+
+1. Save your images with these exact names in the 'images' folder:
+
+   OCEAN YOGA IMAGE:
+   - Save as: /Users/nurturewithyoga/yoga-website/images/yoga-nature.jpg
+   - This will appear as the hero background
+
+   CHAIR YOGA IMAGE:
+   - Save as: /Users/nurturewithyoga/yoga-website/images/chair-yoga.jpg
+   - This will appear in the Chair Yoga service card
+
+   FESTIVAL TEACHING IMAGE:
+   - Save as: /Users/nurturewithyoga/yoga-website/images/festival-class.jpg
+   - This will appear in the Buddhafield Festival event
+
+2. Make sure the file names are EXACTLY as shown above (case-sensitive)
+
+3. Once saved, refresh your website and the images will appear automatically!
+
+Current placeholder files that need to be replaced:
+- yoga-nature.jpg (currently just text)
+- chair-yoga.jpg (currently just text) 
+- festival-class.jpg (currently just text)
+
+The website code is already set up to display these images once you save them with the correct names.

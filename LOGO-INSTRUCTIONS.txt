@@ -1,0 +1,25 @@
+LOGO UPDATE INSTRUCTIONS
+========================
+
+To make your new logo visible on the website:
+
+1. Save your logo image as:
+   /Users/nurturewithyoga/yoga-website/images/logo-final.png
+
+2. The logo should be a PNG file with transparent background for best results.
+
+3. Current settings:
+   - Navigation logo: 85px height
+   - Footer logo: 50px height  
+   - Both have filters applied to match your green color scheme
+
+4. The logo will automatically appear in:
+   - Navigation bar (top of every page)
+   - Footer (bottom of every page)
+
+5. Features added:
+   - Hover effect (slight scale animation)
+   - Color filtering to match your sage green theme
+   - Responsive sizing for all devices
+
+Once you save the logo file with the correct name, it will immediately appear on your website!
