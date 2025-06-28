@@ -16,6 +16,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Mobile menu toggle
 const mobileMenu = document.querySelector('.mobile-menu');
 const navLinks = document.querySelector('.nav-links');
+// determineDosha function is defined in dosha.js
 
 mobileMenu.addEventListener('click', () => {
     navLinks.classList.toggle('active');
@@ -115,21 +116,20 @@ function calculateDosha() {
         return;
     }
     
-    // Count responses for each dosha
+    const answers = [];
     for (let [key, value] of formData.entries()) {
         scores[value]++;
+        answers.push(value);
     }
-    
-    // Find dominant dosha
-    const dominantDosha = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-    const secondaryDosha = Object.keys(scores)
-        .filter(dosha => dosha !== dominantDosha)
-        .reduce((a, b) => scores[a] > scores[b] ? a : b);
-    
+
+    const { dominant, secondary } = typeof determineDosha === 'function'
+        ? determineDosha(answers)
+        : { dominant: null, secondary: null };
+
     console.log('Scores:', scores); // Debug line
-    console.log('Dominant:', dominantDosha); // Debug line
-    
-    displayResult(dominantDosha, secondaryDosha, scores);
+    console.log('Dominant:', dominant); // Debug line
+
+    displayResult(dominant, secondary, scores);
 }
 
 function displayResult(dominant, secondary, scores) {
