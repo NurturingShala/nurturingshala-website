@@ -1689,9 +1689,55 @@ html {
     .recommendations-grid {
         grid-template-columns: 1fr;
     }
-    
-    .consultation-cta {
+
+    /* Dosha Result Responsive */
+    .dosha-result {
         padding: 1.5rem;
+    }
+
+    .dosha-badge {
+        padding: 1rem 1.5rem;
+    }
+
+    .dosha-badge h2 {
+        font-size: 1.75rem;
+    }
+
+    .dosha-element {
+        font-size: 0.9rem;
+    }
+
+    .dosha-description {
+        padding: 1.5rem;
+    }
+
+    .dosha-summary {
+        padding: 1.2rem;
+    }
+
+    .dosha-summary h4 {
+        font-size: 1.25rem;
+    }
+
+    .dosha-summary p,
+    .dosha-explanation p {
+        font-size: 0.95rem;
+    }
+
+    .recommendation-category {
+        padding: 1rem;
+    }
+
+    .recommendation-category h5 {
+        font-size: 1.1rem;
+    }
+
+    .recommendation-category li {
+        font-size: 0.9rem;
+    }
+
+    .consultation-cta {
+        padding: 1rem;
     }
 }
 
