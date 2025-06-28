@@ -9,7 +9,7 @@ To make your new logo visible on the website:
 2. The logo should be a PNG file with transparent background for best results.
 
 3. Current settings:
-   - Navigation logo: 85px height
+   - Navigation logo: 55px height
    - Footer logo: 50px height  
    - Both have filters applied to match your green color scheme
 
