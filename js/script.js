@@ -35,7 +35,8 @@ mobileMenu.addEventListener('click', function() {
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
-            navLinks.style.display = 'none';
+            navLinks.classList.remove('active');
+            mobileMenu.classList.remove('active');
         }
     });
 });
