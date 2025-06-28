@@ -424,6 +424,15 @@ body {
     margin-right: auto;
 }
 
+.events-subtitle {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+}
+
 .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -612,6 +621,10 @@ img::before {
     border-radius: 20px;
     font-size: 0.85rem;
     border: 1px solid var(--primary-color);
+}
+
+#past-events {
+    margin-top: 4rem;
 }
 
 /* Wellness Hub Section */
