@@ -1,0 +1,11 @@
+{
+  "name": "nurturingshala-website",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "jest": "^29.6.1"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
