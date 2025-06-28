@@ -1693,6 +1693,26 @@ html {
     .consultation-cta {
         padding: 1.5rem;
     }
+
+    /* Compact question styles */
+    .question-group {
+        padding: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .question {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .question > label {
+        font-size: 1rem;
+    }
+
+    .options label {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
 }
 
 /* Extra Small Devices */
@@ -1707,5 +1727,13 @@ html {
     
     .class-card {
         padding: 1.25rem;
+    }
+
+    .question-group {
+        padding: 0.75rem;
+    }
+
+    .options label {
+        padding: 0.6rem 0.8rem;
     }
 }
