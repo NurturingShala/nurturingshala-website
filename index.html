@@ -109,9 +109,11 @@
             <h2>Yoga Offerings 2025</h2>
             <p class="events-intro">Rooted in tradition, guided by breath, and open to all. Here's where I'll be sharing practice in the coming months:</p>
             
-            <div class="events-grid">
+            <div id="upcoming-events">
+                <h3 class="events-subtitle">Upcoming Events</h3>
+                <div class="events-grid upcoming">
                 <!-- Regular Classes -->
-                <div class="event-card regular">
+                <div class="event-card regular" data-recurring="true">
                     <div class="event-date">
                         <span class="day">Every Tuesday</span>
                         <span class="time">5:15pm</span>
@@ -125,7 +127,7 @@
                 </div>
 
                 <!-- International Yoga Day -->
-                <div class="event-card special">
+                <div class="event-card special" data-start="2025-06-21">
                     <div class="event-date">
                         <span class="month">June</span>
                         <span class="day">21</span>
@@ -140,7 +142,7 @@
                 </div>
 
                 <!-- Buddhafield Festival -->
-                <div class="event-card festival">
+                <div class="event-card festival" data-start="2025-07-16" data-end="2025-07-20">
                     <div class="event-date">
                         <span class="month">July</span>
                         <span class="day">16-20</span>
@@ -158,7 +160,7 @@
                 </div>
 
                 <!-- Open Heart Workshop -->
-                <div class="event-card workshop">
+                <div class="event-card workshop" data-start="2025-09-13">
                     <div class="event-date">
                         <span class="month">September</span>
                         <span class="day">13</span>
@@ -171,7 +173,13 @@
                         <a href="https://bookwhen.com/sya/e/ev-slxq-20250913100000" target="_blank" class="event-link">Book Workshop</a>
                     </div>
                 </div>
-            </div>
+            </div> <!-- .events-grid.upcoming -->
+        </div> <!-- #upcoming-events -->
+
+        <div id="past-events">
+            <h3 class="events-subtitle">Past Events</h3>
+            <div class="events-grid past"></div>
+        </div>
 
             <div class="events-cta">
                 <p>Looking forward to seeing familiar faces and meeting new ones.<br>Feel free to DM with any questions or just come say hi after class!</p>

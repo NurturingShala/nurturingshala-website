@@ -52,6 +52,34 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Move past events into their own section based on the current date
+document.addEventListener('DOMContentLoaded', () => {
+    const upcomingGrid = document.querySelector('.events-grid.upcoming');
+    const pastGrid = document.querySelector('.events-grid.past');
+
+    if (!upcomingGrid || !pastGrid) return;
+
+    const now = new Date();
+    const eventCards = [...upcomingGrid.querySelectorAll('.event-card')];
+
+    eventCards.forEach(card => {
+        const start = card.dataset.start;
+        const end = card.dataset.end || start;
+        const recurring = card.dataset.recurring === 'true';
+
+        if (recurring || !start) {
+            return; // leave recurring events in upcoming section
+        }
+
+        const startDate = new Date(start);
+        const endDate = new Date(end);
+
+        if (endDate < now) {
+            pastGrid.appendChild(card);
+        }
+    });
+});
+
 // Dosha Survey Functionality
 document.addEventListener('DOMContentLoaded', function() {
     const doshaForm = document.getElementById('doshaForm');
