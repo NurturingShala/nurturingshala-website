@@ -592,6 +592,33 @@ img::before {
     border-color: var(--secondary-color);
 }
 
+.event-card .event-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.event-card .event-link:hover {
+    color: var(--secondary-color);
+}
+
+.workshop-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.workshop-gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
 .events-cta {
     text-align: center;
     padding: 3rem;
