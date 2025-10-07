@@ -623,6 +623,30 @@ img::before {
     transition: all 0.3s ease;
 }
 
+.event-link.secondary {
+    display: inline-block;
+    margin-left: 0;
+    margin-top: 0.75rem;
+}
+
+.event-note {
+    margin: 0.75rem 0 0.5rem;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.past-events-note {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: var(--bg-light);
+    border-radius: 12px;
+    line-height: 1.7;
+}
+
+.past-events-note .event-link {
+    margin-top: 0.75rem;
+}
+
 .event-link:hover {
     color: var(--secondary-color);
     border-color: var(--secondary-color);
