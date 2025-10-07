@@ -1,18 +1,21 @@
 let slideIndex = 0;
-showSlides();
+const slides = document.querySelector('.slideshow-wrapper');
+const totalSlides = document.querySelectorAll('.workshop-slide').length;
 
 function showSlides() {
-    let i;
-    let slides = document.getElementsByClassName("workshop-slide");
-    if (slides.length === 0) return;
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
     slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1 }
-    slides[slideIndex - 1].style.display = "block";
-    setTimeout(showSlides, 4000); // Change image every 4 seconds
+    if (slideIndex >= totalSlides) {
+        slideIndex = 0;
+    }
+    updateSlidePosition();
 }
+
+function updateSlidePosition() {
+    const offset = -slideIndex * 100;
+    slides.style.transform = `translateX(${offset}%)`;
+}
+
+setInterval(showSlides, 4000); // Change image every 4 seconds
 
 document.addEventListener('DOMContentLoaded', (event) => {
     // Get the modal

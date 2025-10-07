@@ -625,27 +625,23 @@ img::before {
   position: relative;
   margin: auto;
   margin-top: 1rem;
+  overflow: hidden;
+}
+
+.slideshow-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
 .workshop-slide {
-    display: none;
+    min-width: 100%;
+    box-sizing: border-box;
 }
 
 .workshop-slide img {
     vertical-align: middle;
     border-radius: 8px;
     cursor: pointer;
-}
-
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
 }
 
 /* Image Modal */
