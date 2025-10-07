@@ -593,7 +593,7 @@ img::before {
 }
 
 .event-card .event-link {
-    display: inline-block;
+    display: block;
     margin-top: 1rem;
     color: var(--primary-color);
     font-weight: 600;
