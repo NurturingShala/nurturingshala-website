@@ -50,6 +50,47 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Separate Upcoming and Past Events
+document.addEventListener('DOMContentLoaded', function() {
+    const upcomingGrid = document.getElementById('upcoming-events-grid');
+    const pastGrid = document.getElementById('past-events-grid');
+    const pastSection = document.getElementById('past-events');
+    const upcomingSection = document.getElementById('upcoming-events');
+
+    if (upcomingGrid && pastGrid && pastSection) {
+        const events = Array.from(upcomingGrid.querySelectorAll('.event-card'));
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Reset time to midnight for accurate day comparison
+
+        let pastEventsCount = 0;
+        let upcomingEventsCount = 0;
+
+        events.forEach(eventCard => {
+            const endDateString = eventCard.getAttribute('data-end-date');
+            if (endDateString) {
+                const endDate = new Date(endDateString);
+                
+                // If event end date is strictly before today, it's a past event
+                if (endDate < today) {
+                    pastGrid.appendChild(eventCard); // Move to past grid
+                    pastEventsCount++;
+                } else {
+                    upcomingEventsCount++;
+                }
+            }
+        });
+
+        // Toggle visibility based on content
+        if (pastEventsCount > 0) {
+            pastSection.style.display = 'block';
+        }
+
+        if (upcomingEventsCount === 0 && upcomingSection) {
+             upcomingSection.style.display = 'none';
+        }
+    }
+});
+
 // Dosha Survey Functionality
 document.addEventListener('DOMContentLoaded', function() {
     const doshaForm = document.getElementById('doshaForm');
