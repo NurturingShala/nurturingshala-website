@@ -90,6 +90,12 @@ document.addEventListener('DOMContentLoaded', function() {
             pastSection.style.display = 'block';
         }
 
+        // Swipe hint only makes sense when there's more than one past event to swipe through
+        const swipeHint = document.querySelector('.swipe-hint');
+        if (swipeHint && pastEventsCount <= 1) {
+            swipeHint.style.display = 'none';
+        }
+
         if (upcomingEventsCount === 0 && upcomingSection) {
              upcomingSection.style.display = 'none';
         }

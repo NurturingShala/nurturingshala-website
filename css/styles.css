@@ -1837,3 +1837,50 @@ html {
     .dosha-banner { flex-direction: column; text-align: center; gap: 12px; padding: 24px 20px; }
     .dosha-banner-cta { margin-left: 0; }
 }
+
+/* ---------- Past events: swipeable carousel on phones ---------- */
+.swipe-hint { display: none; }
+
+@keyframes swipeNudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(6px); }
+}
+
+@media (max-width: 768px) {
+    /* Lay past events out as a horizontal scroll-snap carousel.
+       Same card design; the next card peeks so it's clearly swipeable. */
+    #past-events-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1rem;
+        overflow-x: auto;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 20px;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        align-items: flex-start;
+    }
+
+    #past-events-grid .event-card {
+        flex: 0 0 85%;
+        scroll-snap-align: start;
+    }
+
+    .swipe-hint {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.85rem;
+        color: var(--text-light);
+        margin: 0.25rem 0 1.1rem;
+    }
+
+    .swipe-hint .swipe-arrow {
+        display: inline-block;
+        font-size: 1.05rem;
+        color: var(--primary-color);
+        animation: swipeNudge 1.6s ease-in-out infinite;
+    }
+}
