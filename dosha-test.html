@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Your Dosha — Ayurveda Test | Nurturing Shala</title>
+    <meta name="description" content="A free, interactive Ayurvedic dosha quiz from Nurturing Shala. Discover your Vata, Pitta, or Kapha constitution and get personalised wellbeing guidance.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7C9885;
+            --secondary-color: #9CAF88;
+            --accent-color: #E8DCC4;
+            --text-dark: #2C3E2E;
+            --text-light: #5A6B5B;
+            --bg-light: #F7F6F2;
+            --bg-sage: #E8E5DC;
+            --white: #FFFFFF;
+            --cream: #FAF8F3;
+
+            --vata: #5B86C4;
+            --vata-light: #EAF2FB;
+            --vata-soft: #C9DCF2;
+            --pitta: #E0765A;
+            --pitta-light: #FDEEE8;
+            --pitta-soft: #F6CDBF;
+            --kapha: #6FA178;
+            --kapha-light: #EBF4EC;
+            --kapha-soft: #C9E2CD;
+
+            --shadow: 0 10px 40px rgba(44, 62, 46, 0.10);
+            --shadow-sm: 0 4px 18px rgba(44, 62, 46, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            background-image: radial-gradient(circle at 15% 12%, rgba(156, 175, 136, 0.18), transparent 45%),
+                              radial-gradient(circle at 85% 85%, rgba(232, 220, 196, 0.30), transparent 50%);
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+        .wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 28px 20px 60px;
+        }
+
+        /* ---------- Top bar ---------- */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 26px;
+        }
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .brand img { height: 46px; width: auto; }
+        .brand span {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        .home-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            border: 1px solid var(--accent-color);
+            border-radius: 30px;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+        .home-link:hover { background: var(--white); color: var(--primary-color); border-color: var(--primary-color); }
+
+        /* ---------- Card ---------- */
+        .card {
+            background: var(--white);
+            border-radius: 26px;
+            box-shadow: var(--shadow);
+            padding: 40px 38px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .screen { display: none; animation: fade 0.45s ease; }
+        .screen.active { display: block; }
+        @keyframes fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ---------- Intro ---------- */
+        .lotus {
+            width: 84px; height: 84px;
+            margin: 0 auto 18px;
+            display: block;
+        }
+        .intro { text-align: center; }
+        .intro h1 { font-size: 2.15rem; line-height: 1.2; color: var(--text-dark); margin-bottom: 8px; }
+        .intro .kicker {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.72rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .intro p { color: var(--text-light); max-width: 520px; margin: 0 auto 14px; }
+        .dosha-chips { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 22px 0 8px; }
+        .chip {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 7px 16px; border-radius: 30px;
+            font-size: 0.82rem; font-weight: 500;
+        }
+        .chip .dot { width: 11px; height: 11px; border-radius: 50%; }
+        .chip.v { background: var(--vata-light); color: var(--vata); }
+        .chip.v .dot { background: var(--vata); }
+        .chip.p { background: var(--pitta-light); color: var(--pitta); }
+        .chip.p .dot { background: var(--pitta); }
+        .chip.k { background: var(--kapha-light); color: var(--kapha); }
+        .chip.k .dot { background: var(--kapha); }
+        .meta-line { font-size: 0.8rem; color: var(--text-light); margin-top: 16px; }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 15px 38px;
+            border-radius: 34px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            box-shadow: 0 8px 22px rgba(124, 152, 133, 0.35);
+        }
+        .btn:hover { background: #6b876f; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(124, 152, 133, 0.45); }
+        .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+        .btn.secondary {
+            background: transparent; color: var(--primary-color);
+            border: 1.5px solid var(--primary-color); box-shadow: none;
+        }
+        .btn.secondary:hover { background: var(--primary-color); color: var(--white); }
+        .btn.ghost { background: transparent; color: var(--text-light); box-shadow: none; padding: 12px 20px; }
+        .btn.ghost:hover { background: var(--bg-light); transform: none; color: var(--text-dark); }
+        .btn-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 26px; }
+
+        /* ---------- Optional details form ---------- */
+        .field { text-align: left; max-width: 420px; margin: 16px auto; }
+        .field label { display: block; font-size: 0.85rem; color: var(--text-light); margin-bottom: 6px; font-weight: 500; }
+        .field input {
+            width: 100%; padding: 13px 16px;
+            border: 1.5px solid var(--bg-sage); border-radius: 14px;
+            font-family: 'Poppins', sans-serif; font-size: 0.95rem; color: var(--text-dark);
+            background: var(--cream); transition: border-color 0.2s;
+        }
+        .field input:focus { outline: none; border-color: var(--secondary-color); background: var(--white); }
+        .optional-note { font-size: 0.78rem; color: var(--text-light); font-style: italic; }
+        .consent {
+            display: flex; align-items: flex-start; gap: 11px;
+            max-width: 420px; margin: 6px auto 4px; text-align: left;
+            background: var(--cream); border: 1.5px solid var(--bg-sage);
+            border-radius: 14px; padding: 14px 16px; cursor: pointer;
+            font-size: 0.85rem; color: var(--text-light); transition: border-color 0.2s;
+        }
+        .consent:hover { border-color: var(--secondary-color); }
+        .consent input { width: 20px; height: 20px; margin-top: 1px; accent-color: var(--primary-color); flex-shrink: 0; cursor: pointer; }
+
+        /* personalised result header */
+        .you-card {
+            display: flex; align-items: center; gap: 14px;
+            background: var(--cream); border: 1px solid var(--accent-color);
+            border-radius: 16px; padding: 14px 18px; margin-bottom: 20px;
+        }
+        .you-avatar {
+            width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white); display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600;
+        }
+        .you-meta { text-align: left; line-height: 1.35; overflow: hidden; }
+        .you-meta .you-name { font-weight: 600; color: var(--text-dark); font-size: 1rem; }
+        .you-meta .you-email { font-size: 0.82rem; color: var(--text-light); word-break: break-all; }
+        .you-meta .you-date { font-size: 0.74rem; color: var(--secondary-color); margin-top: 1px; }
+
+        /* ---------- Progress ---------- */
+        .progress-head { margin-bottom: 26px; }
+        .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .progress-meta .step { font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; color: var(--secondary-color); font-weight: 600; }
+        .progress-meta .sect { font-size: 0.78rem; color: var(--text-light); }
+        .progress-track { height: 8px; background: var(--bg-sage); border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--secondary-color), var(--primary-color)); border-radius: 10px; transition: width 0.4s ease; }
+
+        /* ---------- Question ---------- */
+        .q-emoji { font-size: 1.9rem; display: block; margin-bottom: 8px; }
+        .q-icon {
+            width: 58px; height: 58px; margin-bottom: 16px;
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, var(--bg-light), var(--bg-sage));
+            color: var(--primary-color);
+            border: 1px solid var(--accent-color);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.6), 0 4px 12px rgba(44,62,46,0.06);
+        }
+        .q-icon svg { width: 29px; height: 29px; }
+        .result-symbol svg { width: 62px; height: 62px; }
+        .chip .ico { width: 15px; height: 15px; display: inline-block; }
+        .q-text { font-size: 1.45rem; line-height: 1.3; margin-bottom: 6px; color: var(--text-dark); }
+        .q-hint { font-size: 0.85rem; color: var(--text-light); margin-bottom: 22px; }
+        .options { display: flex; flex-direction: column; gap: 12px; }
+        .option {
+            text-align: left;
+            background: var(--cream);
+            border: 1.5px solid var(--bg-sage);
+            border-radius: 16px;
+            padding: 16px 18px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.97rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            line-height: 1.45;
+        }
+        .option:hover { border-color: var(--secondary-color); background: var(--white); transform: translateX(3px); box-shadow: var(--shadow-sm); }
+        .option .pick {
+            flex-shrink: 0;
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            border: 2px solid var(--secondary-color);
+            display: flex; align-items: center; justify-content: center;
+            margin-top: 1px;
+            transition: all 0.2s;
+            font-size: 0.7rem; color: var(--white);
+        }
+        .option.selected { border-color: var(--primary-color); background: #f0f4ee; }
+        .option.selected .pick { background: var(--primary-color); border-color: var(--primary-color); }
+        .nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+
+        /* ---------- Loading ---------- */
+        .calc { text-align: center; padding: 30px 0; }
+        .spinner {
+            width: 54px; height: 54px; margin: 0 auto 20px;
+            border: 4px solid var(--bg-sage); border-top-color: var(--primary-color);
+            border-radius: 50%; animation: spin 0.9s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ---------- Result ---------- */
+        .result-hero { text-align: center; padding: 8px 0 4px; }
+        .result-kicker { text-transform: uppercase; letter-spacing: 3px; font-size: 0.72rem; color: var(--secondary-color); font-weight: 600; margin-bottom: 10px; }
+        .result-symbol { font-size: 3.2rem; line-height: 1; margin-bottom: 6px; }
+        .result-hero h2 { font-size: 2.4rem; margin-bottom: 4px; }
+        .result-sub { color: var(--text-light); font-size: 0.95rem; margin-bottom: 6px; }
+        .result-tag { display: inline-block; padding: 5px 16px; border-radius: 30px; font-size: 0.8rem; font-weight: 500; margin-top: 6px; }
+
+        .bars { margin: 30px 0 8px; }
+        .bar-row { margin-bottom: 16px; }
+        .bar-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 6px; font-weight: 500; }
+        .bar-track { height: 14px; background: var(--bg-light); border-radius: 10px; overflow: hidden; }
+        .bar-fill { height: 100%; width: 0%; border-radius: 10px; transition: width 1s cubic-bezier(.2,.8,.2,1); }
+        .bar-fill.v { background: linear-gradient(90deg, var(--vata-soft), var(--vata)); }
+        .bar-fill.p { background: linear-gradient(90deg, var(--pitta-soft), var(--pitta)); }
+        .bar-fill.k { background: linear-gradient(90deg, var(--kapha-soft), var(--kapha)); }
+
+        .section-block { margin-top: 26px; }
+        .section-block h3 {
+            font-size: 1.05rem; color: var(--primary-color); margin-bottom: 10px;
+            display: flex; align-items: center; gap: 9px;
+        }
+        .section-block h3::before { content: ""; width: 22px; height: 2px; background: var(--secondary-color); display: inline-block; }
+        .section-block p { color: var(--text-light); font-size: 0.93rem; margin-bottom: 8px; }
+        .quality-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+        .quality-tags span {
+            background: var(--bg-light); color: var(--text-dark);
+            padding: 5px 14px; border-radius: 20px; font-size: 0.8rem;
+            border: 1px solid var(--bg-sage);
+        }
+        .tips { list-style: none; }
+        .tips li { padding: 8px 0 8px 28px; position: relative; color: var(--text-light); font-size: 0.93rem; border-bottom: 1px solid var(--bg-light); }
+        .tips li:last-child { border-bottom: none; }
+        .tips li::before { content: "\2698"; position: absolute; left: 4px; color: var(--secondary-color); font-size: 1rem; }
+
+        .dual-note {
+            background: var(--cream); border: 1px dashed var(--accent-color);
+            border-radius: 16px; padding: 16px 20px; margin-top: 24px;
+            font-size: 0.9rem; color: var(--text-light);
+        }
+        .dual-note strong { color: var(--text-dark); }
+
+        .workshop-cta {
+            margin-top: 26px; padding: 22px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 18px; color: var(--white); text-align: center;
+        }
+        .workshop-cta h3 { color: var(--white); font-size: 1.15rem; margin-bottom: 4px; }
+        .workshop-cta p { font-size: 0.88rem; opacity: 0.95; margin-bottom: 14px; }
+        .workshop-cta a { background: var(--white); color: var(--primary-color); box-shadow: none; }
+        .workshop-cta a:hover { background: var(--cream); }
+
+        .disclaimer { font-size: 0.76rem; color: var(--text-light); text-align: center; margin-top: 22px; font-style: italic; }
+
+        .footer-note { text-align: center; margin-top: 26px; font-size: 0.8rem; color: var(--text-light); }
+        .footer-note a { color: var(--primary-color); }
+
+        /* result accent backgrounds */
+        .res-v .result-symbol, .res-v .result-hero h2 { color: var(--vata); }
+        .res-v .result-tag { background: var(--vata-light); color: var(--vata); }
+        .res-p .result-symbol, .res-p .result-hero h2 { color: var(--pitta); }
+        .res-p .result-tag { background: var(--pitta-light); color: var(--pitta); }
+        .res-k .result-symbol, .res-k .result-hero h2 { color: var(--kapha); }
+        .res-k .result-tag { background: var(--kapha-light); color: var(--kapha); }
+
+        @media (max-width: 560px) {
+            .wrap { padding: 18px 14px 50px; }
+            .card { padding: 28px 22px; border-radius: 22px; }
+            .intro h1 { font-size: 1.8rem; }
+            .q-text { font-size: 1.25rem; }
+            .result-hero h2 { font-size: 2rem; }
+            .brand span { display: none; }
+        }
+
+        /* ---------- Print ---------- */
+        @media print {
+            body { background: var(--white); }
+            .topbar, .btn-row, .nav-row, .home-link, .workshop-cta, .footer-note, .no-print { display: none !important; }
+            .card { box-shadow: none; padding: 0; }
+            .wrap { max-width: 100%; }
+            .bar-fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .screen { display: none !important; }
+            #screen-result.active { display: block !important; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="topbar">
+            <a class="brand" href="index.html">
+                <img src="images/logo-final.png" alt="Nurturing Shala">
+                <span>Nurturing Shala</span>
+            </a>
+            <a class="home-link" href="index.html">&larr; Back to site</a>
+        </div>
+
+        <div class="card">
+
+            <!-- INTRO -->
+            <section class="screen active" id="screen-intro">
+                <div class="intro">
+                    <svg class="lotus" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 8c3 7 3 14 0 22-3-8-3-15 0-22z" fill="#9CAF88"/>
+                        <path d="M32 30c-6-5-10-11-12-19 8 2 13 7 15 14 2-7 7-12 15-14-2 8-6 14-12 19" fill="#7C9885"/>
+                        <path d="M14 24c-5 1-9 4-12 9 7 4 13 4 19 1-3-3-5-6-7-10z" fill="#9CAF88"/>
+                        <path d="M50 24c5 1 9 4 12 9-7 4-13 4-19 1 3-3 5-6 7-10z" fill="#9CAF88"/>
+                        <path d="M8 36c8 8 16 12 24 12s16-4 24-12c-6 12-15 18-24 18S14 48 8 36z" fill="#7C9885"/>
+                    </svg>
+                    <div class="kicker">Nurturing Shala &bull; Ayurveda</div>
+                    <h1>Discover Your Dosha</h1>
+                    <p>In Ayurveda, three energies — <strong>Vata</strong>, <strong>Pitta</strong> and <strong>Kapha</strong> — shape your body and mind. This short quiz reveals your unique constitution and offers gentle guidance to bring you into balance.</p>
+                    <div class="dosha-chips">
+                        <span class="chip v"><span class="dot"></span>Vata &middot; Air + Ether</span>
+                        <span class="chip p"><span class="dot"></span>Pitta &middot; Fire + Water</span>
+                        <span class="chip k"><span class="dot"></span>Kapha &middot; Earth + Water</span>
+                    </div>
+                    <p class="meta-line">18 reflective questions &middot; about 10 minutes &middot; answer as you've felt over the last few years</p>
+                    <div class="btn-row">
+                        <button class="btn" onclick="goDetails()">Begin the quiz &rarr;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OPTIONAL DETAILS -->
+            <section class="screen" id="screen-details">
+                <div class="intro">
+                    <div class="kicker">Before we begin</div>
+                    <h1 style="font-size:1.7rem;">A little about you</h1>
+                    <p>Pop your name and email in if you'd like — it helps Ankit personalise your guidance and stay in touch about upcoming workshops. Totally optional.</p>
+                    <div class="field">
+                        <label for="name">Your name <span class="optional-note">(optional)</span></label>
+                        <input type="text" id="name" placeholder="e.g. Maya" autocomplete="given-name">
+                    </div>
+                    <div class="field">
+                        <label for="email">Email <span class="optional-note">(optional)</span></label>
+                        <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+                    </div>
+                    <label class="consent" id="consent-wrap">
+                        <input type="checkbox" id="consent">
+                        <span>Yes, I'd love to hear from Nurturing Shala about upcoming workshops, events and yoga offerings.</span>
+                    </label>
+                    <div class="btn-row">
+                        <button class="btn" onclick="startQuiz()">Start &rarr;</button>
+                    </div>
+                    <button class="btn ghost" onclick="startQuiz()">Skip &amp; stay anonymous</button>
+                </div>
+            </section>
+
+            <!-- QUIZ -->
+            <section class="screen" id="screen-quiz">
+                <div class="progress-head">
+                    <div class="progress-meta">
+                        <span class="step" id="step-counter">Question 1 of 18</span>
+                        <span class="sect" id="section-label">Body</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+                </div>
+                <div id="question-host"></div>
+                <div class="nav-row">
+                    <button class="btn ghost" id="back-btn" onclick="prevQuestion()" style="visibility:hidden;">&larr; Back</button>
+                    <span style="font-size:0.78rem;color:var(--text-light);" id="skip-hint">Tap an answer to continue</span>
+                </div>
+            </section>
+
+            <!-- CALCULATING -->
+            <section class="screen" id="screen-calc">
+                <div class="calc">
+                    <div class="spinner"></div>
+                    <h3 style="font-size:1.3rem;margin-bottom:6px;">Reading your constitution…</h3>
+                    <p style="color:var(--text-light);">Balancing the elements of air, fire, water and earth.</p>
+                </div>
+            </section>
+
+            <!-- RESULT -->
+            <section class="screen" id="screen-result">
+                <div id="result-host"></div>
+            </section>
+
+        </div>
+
+        <div class="footer-note no-print">
+            With love from <a href="index.html">Nurturing Shala</a> &bull; Brighton, UK
+        </div>
+    </div>
+
+    <script>
+    /* ============================================================
+       CONFIG — paste your Google Sheet Web App URL between the quotes.
+       (Setup steps are in DOSHA-TEST-SETUP.md. Until this is filled in,
+        the quiz works perfectly but no signups are saved.)
+    ============================================================ */
+    const SHEET_ENDPOINT = ""; // e.g. "https://script.google.com/macros/s/AKfy..../exec"
+
+    /* ============================================================
+       DOSHA DATA  (a = Vata, b = Pitta, c = Kapha)
+       Faithfully adapted from the Ayurvedic self-assessment
+       questionnaire in "Reveal Your Constitution".
+    ============================================================ */
+
+    const QUESTIONS = [
+        { section: "Body", emoji: "🧍", q: "How would you describe your body frame?", o: [
+            { d:"v", t:"Slender and narrow, with delicate bones, lean muscles and visible veins or tendons." },
+            { d:"p", t:"Medium and well-proportioned, with moderate, defined muscle tone." },
+            { d:"k", t:"Sturdy and broad, with large solid bones; I build muscle and carry weight easily." } ] },
+
+        { section: "Body", emoji: "✨", q: "How would you describe your skin?", o: [
+            { d:"v", t:"Dry, thin and cool, sometimes rough; it can have uneven pigmentation." },
+            { d:"p", t:"Warm with a healthy blush; prone to freckles, moles, redness or sensitivity." },
+            { d:"k", t:"Smooth, soft, moist and cool, with an even complexion." } ] },
+
+        { section: "Body", emoji: "💇", q: "How would you describe your hair?", o: [
+            { d:"v", t:"Fine, dry and a little frizzy or brittle." },
+            { d:"p", t:"Fine and soft, with early greying, thinning or balding." },
+            { d:"k", t:"Lush, thick, wavy and slightly oily." } ] },
+
+        { section: "Body", emoji: "🦴", q: "How would you describe your joints?", o: [
+            { d:"v", t:"Small and prominent; they sometimes crack or click." },
+            { d:"p", t:"Flexible, loose and average in size." },
+            { d:"k", t:"Large, firm and well-knit." } ] },
+
+        { section: "Body", emoji: "💅", q: "How are your nails and lips?", o: [
+            { d:"v", t:"Nails dry and brittle; lips thin and dry." },
+            { d:"p", t:"Nails soft and flexible; lips pink and well-shaped." },
+            { d:"k", t:"Nails thick, smooth and strong; lips full, soft and pale." } ] },
+
+        { section: "Body", emoji: "💧", q: "Do you perspire much, and how is your body odour?", o: [
+            { d:"v", t:"I sweat very little." },
+            { d:"p", t:"I sweat easily and a lot; my odour can be strong." },
+            { d:"k", t:"I sweat moderately, with little noticeable odour." } ] },
+
+        { section: "Body", emoji: "⚖️", q: "How is your weight?", o: [
+            { d:"v", t:"Below average; I find it hard to gain weight and lose it easily." },
+            { d:"p", t:"Average; I can gain or lose weight fairly easily." },
+            { d:"k", t:"Above average; I gain weight easily and find it hard to lose." } ] },
+
+        { section: "Body", emoji: "😴", q: "How do you sleep?", o: [
+            { d:"v", t:"Lightly and not much; I wake easily and early." },
+            { d:"p", t:"Soundly, about 6–8 hours; moderate but reliable." },
+            { d:"k", t:"Deeply and long; I love sleep and find it hard to wake." } ] },
+
+        { section: "Body", emoji: "🍽️", q: "How is your appetite and hunger?", o: [
+            { d:"v", t:"Variable and irregular — strong one moment, forgotten the next." },
+            { d:"p", t:"Strong and sharp; I get irritable if I have to wait to eat." },
+            { d:"k", t:"Steady but mild; I can comfortably skip a meal." } ] },
+
+        { section: "Body", emoji: "🌦️", q: "Which climate suits you best?", o: [
+            { d:"v", t:"Warm and still — I dislike cold, wind and dryness." },
+            { d:"p", t:"Cool — I find heat and strong sun hard to tolerate." },
+            { d:"k", t:"Warm and dry — damp and cold feel uncomfortable." } ] },
+
+        { section: "Mind & Lifestyle", emoji: "🥗", q: "What kind of food do you naturally crave?", o: [
+            { d:"v", t:"Warm, moist, comforting food and soups." },
+            { d:"p", t:"Cool, fresh food and salads; I dislike too much heat or spice." },
+            { d:"k", t:"Light, warm, pungent or dry food; I'm drawn to rich tastes." } ] },
+
+        { section: "Mind & Lifestyle", emoji: "🏃", q: "How do you relate to movement and exercise?", o: [
+            { d:"v", t:"I'm restless and active, fidgety, with quick bursts of energy." },
+            { d:"p", t:"I enjoy purposeful, goal-driven workouts and competition." },
+            { d:"k", t:"I'm happy sitting still; I move slowly and need motivation to start." } ] },
+
+        { section: "Mind & Lifestyle", emoji: "🗣️", q: "How would you describe your speech?", o: [
+            { d:"v", t:"Fast and talkative; I may jump topics or trail off." },
+            { d:"p", t:"Clear, sharp and confident, with a strong voice." },
+            { d:"k", t:"Slow, calm and measured; people find it soothing." } ] },
+
+        { section: "Mind & Lifestyle", emoji: "💭", q: "How would you describe your thoughts?", o: [
+            { d:"v", t:"Quick and full of ideas; my attention wanders easily." },
+            { d:"p", t:"Clear, sharp and analytical; I love to plan." },
+            { d:"k", t:"Steady and methodical; I'm slow to change my mind." } ] },
+
+        { section: "Mind & Lifestyle", emoji: "🌊", q: "Under stress, you tend to feel…", o: [
+            { d:"v", t:"Anxious, worried or insecure." },
+            { d:"p", t:"Irritable, impatient or quick to anger." },
+            { d:"k", t:"Calm and steady — it takes a lot to rattle me." } ] },
+
+        { section: "Mind & Lifestyle", emoji: "🔄", q: "How do you handle change?", o: [
+            { d:"v", t:"I adapt easily — change suits my nature." },
+            { d:"p", t:"I take it on as a challenge to master." },
+            { d:"k", t:"I resist it; I prefer a steady, familiar routine." } ] },
+
+        { section: "Mind & Lifestyle", emoji: "🧠", q: "How is your memory?", o: [
+            { d:"v", t:"I learn fast but forget fast — strong short-term, weaker long-term." },
+            { d:"p", t:"Sharp and accurate; I recall things well." },
+            { d:"k", t:"Slow to learn, but I rarely forget — excellent long-term memory." } ] },
+
+        { section: "Mind & Lifestyle", emoji: "🔋", q: "How are your energy and endurance?", o: [
+            { d:"v", t:"Energy comes in quick bursts, then dips; low stamina." },
+            { d:"p", t:"Good, focused energy; I push myself hard." },
+            { d:"k", t:"Slow to start, but strong, lasting endurance." } ] }
+    ];
+
+    const DOSHAS = {
+        v: {
+            key:"v", name:"Vata", symbol:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10.5a2.7 2.7 0 1 0-2.7-2.7M3 12h15a2.7 2.7 0 1 1-2.7 2.7M3 16h9a2.5 2.5 0 1 1-2.5 2.5"/></svg>', elements:"Air + Ether",
+            tagline:"The creative breeze — light, mobile and quick.",
+            qualities:["Light","Dry","Cool","Mobile","Quick","Subtle","Irregular"],
+            body:"A Vata constitution tends toward a light, slender frame with dry skin and hair, cool hands and feet, and changeable energy and digestion. When balanced, you feel energetic, agile and free. When Vata rises, you may notice dryness, restlessness, bloating, disturbed sleep or feeling cold.",
+            mind:"Your mind is creative, curious and fast-moving — full of ideas and quick to learn. You're enthusiastic, expressive and adaptable. When out of balance, this same lightness can become worry, anxiety, scattered focus or overwhelm.",
+            tips:[
+                "Keep warm and cosy — favour warm, cooked, moist, lightly spiced meals.",
+                "Routine is medicine: regular meal and sleep times steady your system.",
+                "Slow, grounding, steady yoga and long exhales calm the nervous system.",
+                "Daily warm oil self-massage (abhyanga) soothes dryness and anxiety.",
+                "Rest fully and avoid over-stimulation, cold raw food and skipping meals."
+            ]
+        },
+        p: {
+            key:"p", name:"Pitta", symbol:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c1.3 4.3 5 5.4 5 9.6a5 5 0 0 1-10 0c0-2.3 1.2-3.4 2.3-4.4.4 1.8 1.6 2.4 2.7 2.4.6-2.3-.8-4.7 0-7.6z"/><path d="M9.6 16.4a2.6 2.6 0 0 0 4.8 0"/></svg>', elements:"Fire + Water",
+            tagline:"The focused flame — sharp, warm and driven.",
+            qualities:["Hot","Sharp","Light","Oily","Intense","Penetrating"],
+            body:"A Pitta constitution tends toward a medium, athletic build with warm skin (often with freckles or moles), strong digestion and a good appetite. You run warm and sweat easily. When balanced, you're radiant and energetic; when Pitta rises, you may notice heat, inflammation, acidity, skin flare-ups or irritability.",
+            mind:"Your mind is sharp, focused and ambitious — a natural organiser and leader who loves a goal. You're articulate, confident and decisive. Out of balance, that fire can turn to impatience, criticism, anger or burnout.",
+            tips:[
+                "Stay cool — favour fresh, cooling foods; go easy on chilli, salt, alcohol and caffeine.",
+                "Don't skip meals; let-down in fuel makes the fire turn to irritability.",
+                "Build in leisure and play — you don't always have to be productive.",
+                "Cooling, non-competitive practice: moon salutations, swimming, time in nature.",
+                "Cooling breath (sheetali) and moonlight walks settle the inner heat."
+            ]
+        },
+        k: {
+            key:"k", name:"Kapha", symbol:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19C5 11 11 6 19 6c0 8-5 13-13 13a5.6 5.6 0 0 1-1-.4z"/><path d="M5.5 18.5C8.5 14.5 11.5 12 15 10.5"/></svg>', elements:"Earth + Water",
+            tagline:"The steady mountain — calm, strong and nurturing.",
+            qualities:["Heavy","Slow","Cool","Oily","Stable","Soft","Smooth"],
+            body:"A Kapha constitution tends toward a strong, sturdy, well-built frame with smooth skin, thick hair, deep sleep and great stamina and immunity. When balanced, you're grounded and robust; when Kapha rises, you may notice sluggishness, weight gain, congestion, water retention or a heavy, foggy feeling.",
+            mind:"Your mind is calm, patient, loyal and loving, with excellent long-term memory and a soothing presence. You're steady and dependable. Out of balance, this can become inertia, resistance to change, attachment or low motivation.",
+            tips:[
+                "Seek stimulation and variety — newness keeps Kapha bright and motivated.",
+                "Rise early and move daily; vigorous, warming, energising yoga suits you.",
+                "Favour light, warm, spiced food; go easy on heavy, sweet, oily and cold foods.",
+                "Avoid daytime naps and too much sitting — momentum is your friend.",
+                "Welcome change and new experiences to keep body and mind from stagnating."
+            ]
+        }
+    };
+
+    /* ============================================================
+       MODERN LINE ICONS  (custom SVG, inherit colour via currentColor)
+    ============================================================ */
+    const ICONS = {
+        body:'<circle cx="12" cy="5" r="2.6"/><path d="M12 7.6v8M12 15.6l-3.5 4.6M12 15.6l3.5 4.6M6.5 11h11"/>',
+        sparkle:'<path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/><path d="M18.5 14.6l.55 1.5 1.5.55-1.5.55-.55 1.5-.55-1.5-1.5-.55 1.5-.55z"/>',
+        hair:'<path d="M7 4.5C5.6 7.5 5.3 11 6 20M12 4c-1 4-1 8 0 16M17 4.5c1.4 3 1.7 6.5 1 15.5"/>',
+        joint:'<circle cx="7.5" cy="7.5" r="2.4"/><circle cx="16.5" cy="16.5" r="2.4"/><path d="M9.4 9.4l5.2 5.2"/>',
+        lips:'<path d="M3 12c2.5-2.5 6-3.8 9-3.8s6.5 1.3 9 3.8c-2.5 2.5-6 3.8-9 3.8S5.5 14.5 3 12z"/><path d="M3 12h18"/>',
+        drop:'<path d="M12 3.5s5.5 6 5.5 10.5a5.5 5.5 0 0 1-11 0C6.5 9.5 12 3.5 12 3.5z"/>',
+        scale:'<path d="M12 4v16M6 20h12M5 8h14l-3-3M5 8l-2.6 5.6a3 3 0 0 0 5.2 0L5 8zM19 8l-2.6 5.6a3 3 0 0 0 5.2 0L19 8z"/>',
+        moon:'<path d="M20 13.5A7.5 7.5 0 1 1 10 4a6 6 0 0 0 10 9.5z"/><path d="M16.8 4.4l.45 1.25 1.25.45-1.25.45-.45 1.25-.45-1.25-1.25-.45 1.25-.45z"/>',
+        bowl:'<path d="M3.5 11.5h17a8.5 8.5 0 0 1-17 0z"/><path d="M2.5 11.5h19"/><path d="M9 7.5c-.6-1 .2-2 .8-2.5M13.2 7.5c-.6-1 .2-2 .8-2.5"/>',
+        sun:'<circle cx="12" cy="12" r="3.5"/><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.5 5.5l1.6 1.6M16.9 16.9l1.6 1.6M5.5 18.5l1.6-1.6M16.9 7.1l1.6-1.6"/>',
+        leaf:'<path d="M5 19C5 11 11 6 19 6c0 8-5 13-13 13a5.6 5.6 0 0 1-1-.4z"/><path d="M5.5 18.5C8.5 14.5 11.5 12 15 10.5"/>',
+        activity:'<path d="M3 12h4l2.5-6.5 5 13L17 12h4"/>',
+        speech:'<path d="M4 5.5h16a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H9.5L5 19.5V15.5H4a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z"/><path d="M8 9.2h8M8 12.2h5"/>',
+        think:'<path d="M7.6 13.8A3.3 3.3 0 0 1 8 7.2a4.3 4.3 0 0 1 8.2-.6 3.3 3.3 0 0 1 .7 6.4 4.1 4.1 0 0 1-7.6.4"/><path d="M9.2 13.8v3M12 12.2v5M14.8 13.2v3"/>',
+        waves:'<path d="M3 9c2-2.4 4-2.4 6 0s4 2.4 6 0 4-2.4 6 0M3 15c2-2.4 4-2.4 6 0s4 2.4 6 0 4-2.4 6 0"/>',
+        refresh:'<path d="M3.5 9a8 8 0 0 1 13.4-3.2L20 9M20.5 15a8 8 0 0 1-13.4 3.2L4 15"/><path d="M20 4.5V9h-4.5M4 19.5V15h4.5"/>',
+        bulb:'<path d="M9.5 17.5h5M10.5 20.5h3M12 3a6 6 0 0 0-3.8 10.6c.7.6 1.1 1.3 1.2 2.4h5.2c.1-1.1.5-1.8 1.2-2.4A6 6 0 0 0 12 3z"/>',
+        bolt:'<path d="M13 2.5L5 13.5h5.5L9.5 21.5 19 10h-6z"/>',
+        download:'<path d="M12 3v12M7 11l5 5 5-5M5 20h14"/>',
+        retake:'<path d="M3.5 9a8 8 0 0 1 13.4-3.2L20 9M20 4.5V9h-4.5"/><path d="M20.5 15a8 8 0 0 1-13.4 3.2L4 15M4 19.5V15h4.5"/>'
+    };
+    const QICON = ["body","sparkle","hair","joint","lips","drop","scale","moon","bowl","sun","leaf","activity","speech","think","waves","refresh","bulb","bolt"];
+    function svgIcon(name, sw) {
+        return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (sw||1.7) + '" stroke-linecap="round" stroke-linejoin="round">' + (ICONS[name] || '') + '</svg>';
+    }
+
+    /* ============================================================
+       STATE
+    ============================================================ */
+    let current = 0;
+    const answers = new Array(QUESTIONS.length).fill(null);
+    let participant = { name: "", email: "", consent: false };
+
+    const $ = id => document.getElementById(id);
+    function show(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        $(id).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goDetails() { show('screen-details'); }
+
+    function startQuiz() {
+        participant.name = ($('name') ? $('name').value.trim() : "");
+        participant.email = ($('email') ? $('email').value.trim() : "");
+        participant.consent = ($('consent') ? $('consent').checked : false);
+        current = 0;
+        show('screen-quiz');
+        renderQuestion();
+    }
+
+    function renderQuestion() {
+        const q = QUESTIONS[current];
+        const total = QUESTIONS.length;
+        $('step-counter').textContent = `Question ${current + 1} of ${total}`;
+        $('section-label').textContent = q.section;
+        $('progress-fill').style.width = `${((current) / total) * 100}%`;
+        $('back-btn').style.visibility = current === 0 ? 'hidden' : 'visible';
+
+        let html = `<div class="q-icon">${svgIcon(QICON[current])}</div>
+                    <h2 class="q-text">${q.q}</h2>
+                    <p class="q-hint">Choose the answer that feels most true for you overall.</p>
+                    <div class="options">`;
+        q.o.forEach((opt, i) => {
+            const sel = answers[current] === opt.d ? 'selected' : '';
+            const tick = answers[current] === opt.d ? '✓' : '';
+            html += `<button class="option ${sel}" data-d="${opt.d}" onclick="choose('${opt.d}')">
+                        <span class="pick">${tick}</span>
+                        <span>${opt.t}</span>
+                     </button>`;
+        });
+        html += `</div>`;
+        $('question-host').innerHTML = html;
+    }
+
+    function choose(d) {
+        answers[current] = d;
+        // visual feedback
+        document.querySelectorAll('#question-host .option').forEach(el => {
+            const on = el.dataset.d === d;
+            el.classList.toggle('selected', on);
+            el.querySelector('.pick').textContent = on ? '✓' : '';
+        });
+        setTimeout(nextQuestion, 280);
+    }
+
+    function nextQuestion() {
+        if (current < QUESTIONS.length - 1) {
+            current++;
+            renderQuestion();
+        } else {
+            finish();
+        }
+    }
+
+    function prevQuestion() {
+        if (current > 0) { current--; renderQuestion(); }
+    }
+
+    function finish() {
+        $('progress-fill').style.width = '100%';
+        show('screen-calc');
+        setTimeout(renderResult, 1600);
+    }
+
+    function renderResult() {
+        const score = { v:0, p:0, k:0 };
+        answers.forEach(a => { if (a) score[a]++; });
+        const total = score.v + score.p + score.k || 1;
+        const pct = {
+            v: Math.round((score.v / total) * 100),
+            p: Math.round((score.p / total) * 100),
+            k: Math.round((score.k / total) * 100)
+        };
+
+        // rank doshas
+        const ranked = ['v','p','k'].sort((a,b) => score[b] - score[a]);
+        const top = ranked[0];
+        const second = ranked[1];
+        const D = DOSHAS[top];
+
+        // dual constitution if top two are close (within 1 mark / ~15%)
+        const isDual = (score[top] - score[second]) <= 1 && score[second] > 0;
+        const name = participant.name;
+        const email = participant.email;
+
+        const greeting = name ? `${name}, your` : 'Your';
+        const titleText = isDual
+            ? `${DOSHAS[top].name}-${DOSHAS[second].name}`
+            : DOSHAS[top].name;
+
+        const dateStr = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+        let youCard = '';
+        if (name || email) {
+            const initial = (name || email).charAt(0).toUpperCase();
+            youCard = `<div class="you-card">
+                <div class="you-avatar">${initial}</div>
+                <div class="you-meta">
+                    ${name ? `<div class="you-name">${name}</div>` : ''}
+                    ${email ? `<div class="you-email">${email}</div>` : ''}
+                    <div class="you-date">Taken ${dateStr}</div>
+                </div>
+            </div>`;
+        }
+
+        // record this submission to the private database
+        recordSubmission({ name, email, consent: participant.consent, dosha: titleText,
+            primary: DOSHAS[top].name, vata: pct.v, pitta: pct.p, kapha: pct.k, date: new Date().toISOString() });
+
+        let html = `
+            <div class="res-${top}">
+              ${youCard}
+              <div class="result-hero">
+                <div class="result-kicker">${greeting} dominant dosha is</div>
+                <div class="result-symbol">${D.symbol}</div>
+                <h2>${titleText}</h2>
+                <div class="result-sub">${D.elements} &bull; ${D.tagline}</div>
+                ${isDual ? `<span class="result-tag">A balanced dual constitution</span>` : `<span class="result-tag">${pct[top]}% ${D.name}</span>`}
+              </div>
+
+              <div class="bars">
+                <div class="bar-row">
+                  <div class="bar-label"><span>Vata &middot; Air + Ether</span><span>${pct.v}%</span></div>
+                  <div class="bar-track"><div class="bar-fill v" data-w="${pct.v}"></div></div>
+                </div>
+                <div class="bar-row">
+                  <div class="bar-label"><span>Pitta &middot; Fire + Water</span><span>${pct.p}%</span></div>
+                  <div class="bar-track"><div class="bar-fill p" data-w="${pct.p}"></div></div>
+                </div>
+                <div class="bar-row">
+                  <div class="bar-label"><span>Kapha &middot; Earth + Water</span><span>${pct.k}%</span></div>
+                  <div class="bar-track"><div class="bar-fill k" data-w="${pct.k}"></div></div>
+                </div>
+              </div>`;
+
+        if (isDual) {
+            html += `<div class="dual-note">Your scores for <strong>${DOSHAS[top].name}</strong> and <strong>${DOSHAS[second].name}</strong> are close — this is very common. You carry qualities of both, and the guidance below for ${DOSHAS[top].name} applies most, with ${DOSHAS[second].name} as a strong supporting influence.</div>`;
+        }
+
+        html += `
+              <div class="section-block">
+                <h3>Your body</h3>
+                <p>${D.body}</p>
+              </div>
+
+              <div class="section-block">
+                <h3>Your mind</h3>
+                <p>${D.mind}</p>
+              </div>
+
+              <div class="section-block">
+                <h3>Qualities of ${D.name}</h3>
+                <div class="quality-tags">${D.qualities.map(q => `<span>${q}</span>`).join('')}</div>
+              </div>
+
+              <div class="section-block">
+                <h3>Gentle ways to find balance</h3>
+                <ul class="tips">${D.tips.map(t => `<li>${t}</li>`).join('')}</ul>
+              </div>
+
+              <div class="btn-row no-print">
+                <button class="btn" onclick="window.print()">${svgIcon('download',2)} Save / print my result</button>
+                <button class="btn secondary" onclick="restart()">${svgIcon('retake',2)} Retake quiz</button>
+              </div>
+
+              <div class="workshop-cta no-print">
+                <h3>Bring this into your body</h3>
+                <p>Explore your dosha through breath, movement and balance with Ankit at the next Nurturing Shala workshop.</p>
+                <a class="btn" href="index.html#events">See upcoming workshops →</a>
+              </div>
+
+              <p class="disclaimer">This quiz offers your <em>prakriti</em> (natural constitution) as a guide for wellbeing and self-understanding. It is not medical advice — please consult a qualified practitioner for health concerns.</p>
+            </div>`;
+
+        $('result-host').innerHTML = html;
+        show('screen-result');
+
+        // animate bars
+        setTimeout(() => {
+            document.querySelectorAll('#result-host .bar-fill').forEach(b => {
+                b.style.width = b.dataset.w + '%';
+            });
+        }, 150);
+    }
+
+    function restart() {
+        current = 0;
+        for (let i = 0; i < answers.length; i++) answers[i] = null;
+        show('screen-intro');
+    }
+
+    /* Send an opted-in signup to the private Google Sheet.
+       Only fires when the person gave an email AND ticked consent.
+       Uses no-cors fire-and-forget so it never blocks or breaks the result. */
+    let submitted = false;
+    function recordSubmission(data) {
+        if (submitted) return;
+        if (!data.consent || !data.email) return;   // store only opted-in signups
+        if (!SHEET_ENDPOINT) return;                 // not configured yet
+        submitted = true;
+        try {
+            fetch(SHEET_ENDPOINT, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(data)
+            });
+        } catch (e) { /* fail silently — the result must always show */ }
+    }
+    </script>
+</body>
+
+</html>

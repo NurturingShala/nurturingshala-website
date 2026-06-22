@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discover Your Dosha — Printable QR Flyer | Nurturing Shala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage:#7C9885; --sage-2:#9CAF88; --accent:#E8DCC4;
+    --ink:#2C3E2E; --muted:#5A6B5B; --cream:#FAF8F3; --white:#fff;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{background:#e9e7df; font-family:'Poppins',sans-serif; color:var(--ink);}
+  /* On-screen helper bar (hidden when printing) */
+  .toolbar{
+    position:sticky; top:0; z-index:10; display:flex; gap:14px; align-items:center;
+    justify-content:center; padding:14px; background:var(--ink); color:#fff;
+    font-size:14px; letter-spacing:.2px;
+  }
+  .toolbar b{font-weight:600;}
+  .toolbar button{
+    font-family:inherit; font-size:14px; font-weight:600; cursor:pointer;
+    border:0; border-radius:999px; padding:9px 20px; color:#fff;
+    background:var(--sage);
+  }
+  .toolbar button:hover{background:#6b876f;}
+
+  .sheet-wrap{display:flex; justify-content:center; padding:28px 16px 48px;}
+
+  /* A4 page */
+  .page{
+    width:210mm; min-height:297mm; background:var(--cream);
+    padding:24mm 20mm; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 12px 40px rgba(0,0,0,.16);
+  }
+  .card{
+    width:100%; text-align:center;
+    border:1.5px solid var(--sage); border-radius:26px;
+    padding:20mm 16mm; background:
+      radial-gradient(120% 80% at 50% -10%, rgba(156,175,136,.12), transparent 60%),
+      var(--white);
+  }
+  .eyebrow{
+    font-size:15px; letter-spacing:.42em; text-transform:uppercase;
+    color:var(--sage); font-weight:600; margin-bottom:18px;
+  }
+  h1{
+    font-family:'Playfair Display',serif; font-weight:700;
+    font-size:54px; line-height:1.06; color:var(--ink); margin-bottom:16px;
+  }
+  .lede{
+    font-size:18px; line-height:1.6; font-weight:300; color:var(--muted);
+    max-width:30em; margin:0 auto 22px;
+  }
+  .leaf{margin:6px auto 22px; opacity:.9;}
+  .divider{
+    width:64px; height:2px; background:var(--accent); border:0; margin:0 auto 26px;
+  }
+  .qr-card{
+    display:inline-block; background:var(--white); padding:22px; border-radius:22px;
+    border:1px solid #ece9e0; box-shadow:0 10px 30px rgba(44,62,46,.10);
+  }
+  .qr{display:block; width:72mm; height:72mm;}
+  .scan{
+    margin-top:24px; font-size:21px; font-weight:600; color:var(--ink);
+    font-family:'Playfair Display',serif;
+  }
+  .scan span{color:var(--sage);}
+  .steps{
+    margin:18px auto 0; display:flex; gap:10px; align-items:center; justify-content:center;
+    flex-wrap:wrap; font-size:14px; color:var(--muted); font-weight:400;
+  }
+  .steps .pill{
+    background:var(--cream); border:1px solid #ece9e0; border-radius:999px;
+    padding:7px 16px;
+  }
+  .steps .arrow{color:var(--sage-2); font-weight:600;}
+  .foot{
+    margin-top:30px; padding-top:22px; border-top:1px solid #ece9e0;
+    display:flex; flex-direction:column; gap:6px; align-items:center;
+  }
+  .url{
+    font-size:18px; font-weight:600; color:var(--ink); letter-spacing:.2px;
+  }
+  .social{font-size:15px; color:var(--sage); font-weight:500;}
+
+  @media print{
+    @page{ size:A4; margin:0; }
+    html,body{background:#fff;}
+    .toolbar{display:none !important;}
+    .sheet-wrap{padding:0;}
+    .page{box-shadow:none; width:auto; min-height:auto;}
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <span><b>Print tip:</b> press ⌘P (Mac) / Ctrl+P, choose <b>A4</b> and set Margins to <b>None</b>.</span>
+    <button onclick="window.print()">Print this flyer</button>
+  </div>
+
+  <div class="sheet-wrap">
+    <div class="page">
+      <div class="card">
+        <div class="eyebrow">Nurturing Shala</div>
+        <h1>Discover Your&nbsp;Dosha</h1>
+        <p class="lede">Take our free Ayurvedic body-type quiz and learn how to eat, move and rest in tune with your true nature.</p>
+        <div class="leaf"><svg viewBox="0 0 24 24" fill="none" stroke="#7C9885" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="34" height="34"><path d="M11 21c-4 0-7-3-7-8 0-5 5-9 15-10 0 9-3 18-8 18z"/><path d="M11 21c0-6 2-10 6-13"/></svg></div>
+        <hr class="divider">
+        <div class="qr-card">
+          <img class="qr" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MSIgaGVpZ2h0PSI0MSIgY2xhc3M9InNlZ25vIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDQxdjQxaC00MXoiLz48cGF0aCBjbGFzcz0icXJsaW5lIiBzdHJva2U9IiMyYzNlMmUiIGQ9Ik00IDQuNWg3bTIgMGgxbTUgMGgxbTIgMGgxbTMgMGgybTIgMGg3bS0zMyAxaDFtNSAwaDFtMyAwaDFtMiAwaDNtMiAwaDNtMSAwaDFtMyAwaDFtNSAwaDFtLTMzIDFoMW0xIDBoM20xIDBoMW0xIDBoMm00IDBoMm0xIDBoMm0xIDBoNW0xIDBoMW0xIDBoM20xIDBoMW0tMzMgMWgxbTEgMGgzbTEgMGgxbTMgMGgxbTEgMGgxbTEgMGg0bTEgMGgxbTIgMGgzbTEgMGgxbTEgMGgzbTEgMGgxbS0zMyAxaDFtMSAwaDNtMSAwaDFtMSAwaDFtMiAwaDFtMSAwaDRtMiAwaDFtMyAwaDFtMiAwaDFtMSAwaDNtMSAwaDFtLTMzIDFoMW01IDBoMW0xIDBoM20xIDBoMm0xIDBoMW0yIDBoMW0xIDBoMm00IDBoMW01IDBoMW0tMzMgMWg3bTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGg3bS0yMiAxaDFtMSAwaDFtMiAwaDdtLTIyIDFoMW0yIDBoMW0xIDBoMW0xIDBoMm0xIDBoNG0yIDBoMm0xIDBoM20yIDBoMW0xIDBoMm0xIDBoMW0tMzEgMWg0bTMgMGg2bTIgMGgxbTEgMGgybTIgMGgxbTEgMGgxbTEgMGgxbTMgMGgzbS0zMiAxaDFtMiAwaDFtMSAwaDNtMSAwaDFtMiAwaDFtMyAwaDFtMSAwaDFtMSAwaDFtMiAwaDFtMiAwaDFtMiAwaDFtMSAwaDFtLTMyIDFoMW0xIDBoMW0xIDBoMm0xIDBoNG00IDBoMW01IDBoNG02IDBoMm0tMzIgMWgxbTEgMGgxbTIgMGgybTEgMGgxbTEgMGgzbTUgMGg0bTMgMGgxbTEgMGgybS0zMCAxaDNtMSAwaDFtNSAwaDJtMSAwaDFtMSAwaDJtMSAwaDRtMSAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtLTI4IDFoMW0xIDBoMW0xIDBoNW0yIDBoMW0xIDBoMW0xIDBoMW0zIDBoNm00IDBoMW0tMzIgMWgxbTMgMGgxbTUgMGgxbTIgMGgxbTEgMGg0bTIgMGgxbTEgMGg3bS0zMCAxaDNtMiAwaDNtMSAwaDFtMiAwaDFtMyAwaDJtMSAwaDRtMyAwaDFtMSAwaDFtMiAwaDFtLTMwIDFoMm0xMiAwaDJtMyAwaDFtMSAwaDFtMSAwaDFtMyAwaDNtLTMxIDFoMW00IDBoMW0xIDBoM20yIDBoM20xIDBoMW0zIDBoM20zIDBoMW0xIDBoMW0xIDBoMW0tMjkgMWgzbTEgMGgzbTIgMGgybTEgMGgxbTEgMGgybTIgMGgybTIgMGgxbTEgMGgxbTMgMGgybS0zMyAxaDFtMSAwaDFtMyAwaDJtMiAwaDFtMSAwaDNtMSAwaDFtMyAwaDNtMSAwaDZtMSAwaDJtLTMzIDFoM203IDBoMW0xIDBoMW0zIDBoOG0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0tMzAgMWg2bTEgMGg0bTEgMGgxbTIgMGgxbTUgMGgxbTEgMGgybTMgMGgybS0zMCAxaDFtMSAwaDFtMiAwaDFtMiAwaDJtMSAwaDJtNSAwaDVtMSAwaDFtNSAwaDFtLTMzIDFoMm0xIDBoNG0xIDBoMW0yIDBoM20zIDBoMW0yIDBoM20xIDBoNW0yIDBoMW0tMjQgMWgxbTEgMGg2bTEgMGgybTQgMGgybTMgMGgxbTEgMGgybS0zMiAxaDdtNSAwaDNtMSAwaDNtMSAwaDJtMiAwaDFtMSAwaDFtMSAwaDJtMSAwaDFtLTMyIDFoMW01IDBoMW0yIDBoMW0xIDBoMm0yIDBoMm0xIDBoMm0xIDBoMm0xIDBoMW0zIDBoMW0zIDBoMW0tMzMgMWgxbTEgMGgzbTEgMGgxbTEgMGgxbTEgMGg4bTEgMGg0bTEgMGg2bS0zMCAxaDFtMSAwaDNtMSAwaDFtNCAwaDFtMiAwaDFtMSAwaDNtNCAwaDJtMSAwaDZtLTMyIDFoMW0xIDBoM20xIDBoMW0yIDBoNW0xIDBoM20yIDBoMW00IDBoNW0tMzAgMWgxbTUgMGgxbTEgMGgxbTEgMGgybTIgMGgxbTIgMGgxbTIgMGgybTIgMGgzbS0yNyAxaDdtNiAwaDFtMSAwaDFtMiAwaDFtMiAwaDRtMSAwaDFtNSAwaDEiLz48L3N2Zz4K" alt="QR code linking to the Discover Your Dosha quiz at nurturingshala.com/dosha-test.html">
+        </div>
+        <div class="scan">Scan to begin <span>·</span> takes 10 minutes</div>
+        <div class="steps">
+          <span class="pill">Open your camera</span>
+          <span class="arrow">&rarr;</span>
+          <span class="pill">Point at the code</span>
+          <span class="arrow">&rarr;</span>
+          <span class="pill">Tap the link</span>
+        </div>
+        <div class="foot">
+          <div class="url">nurturingshala.com/dosha-test.html</div>
+          <div class="social">@nurturingshala</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

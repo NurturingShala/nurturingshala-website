@@ -1781,3 +1781,49 @@ html {
         padding: 1.25rem;
     }
 }
+/* ===== Dosha Test Banner (Events section) ===== */
+.dosha-banner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    padding: 22px 28px;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--bg-sage) 100%);
+    border: 1px solid var(--accent-color);
+    border-radius: 18px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 22px rgba(44, 62, 46, 0.07);
+}
+.dosha-banner:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(44, 62, 46, 0.13);
+    border-color: var(--primary-color);
+}
+.dosha-banner-emoji { font-size: 2.4rem; line-height: 1; flex-shrink: 0; }
+.dosha-banner-text { display: flex; flex-direction: column; gap: 3px; }
+.dosha-banner-text strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+.dosha-banner-text span { font-size: 0.9rem; color: var(--text-light); }
+.dosha-banner-cta {
+    margin-left: auto;
+    flex-shrink: 0;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 11px 22px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.3s ease;
+}
+.dosha-banner:hover .dosha-banner-cta { background: #6b876f; }
+@media (max-width: 600px) {
+    .dosha-banner { flex-direction: column; text-align: center; gap: 12px; padding: 24px 20px; }
+    .dosha-banner-cta { margin-left: 0; }
+}
