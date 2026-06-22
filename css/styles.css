@@ -54,6 +54,15 @@ body {
     gap: 1rem;
 }
 
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
 .main-logo {
     height: 55px;
     width: auto;
@@ -1655,7 +1664,8 @@ html {
     }
     
     /* Navigation */
-    .logo {
+    .logo,
+    .logo-link {
         gap: 0.5rem;
     }
     

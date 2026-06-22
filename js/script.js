@@ -34,7 +34,12 @@ mobileMenu.addEventListener('click', function() {
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
-            navLinks.style.display = 'none';
+            navLinks.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            const spans = mobileMenu.querySelectorAll('span');
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = '';
         }
     });
 });
