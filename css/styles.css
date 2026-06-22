@@ -1860,12 +1860,25 @@ html {
         scroll-padding-left: 20px;
         overscroll-behavior-x: contain;
         -webkit-overflow-scrolling: touch;
-        align-items: flex-start;
+        align-items: stretch;
     }
 
     #past-events-grid .event-card {
         flex: 0 0 85%;
         scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Uniform-height cards: let content fill and pin the link to the bottom */
+    #past-events-grid .event-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+
+    #past-events-grid .event-content > a.event-link:last-child {
+        margin-top: auto;
     }
 
     .swipe-hint {

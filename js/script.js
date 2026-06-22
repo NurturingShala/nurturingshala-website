@@ -85,6 +85,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // Feature image-rich cards (those with a photo slideshow) first in the carousel
+        pastGrid.querySelectorAll('.event-card .slideshow-container').forEach(sc => {
+            pastGrid.prepend(sc.closest('.event-card'));
+        });
+
         // Toggle visibility based on content
         if (pastEventsCount > 0) {
             pastSection.style.display = 'block';
