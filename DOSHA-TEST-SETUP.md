@@ -1,100 +1,87 @@
-# Dosha Test — Private Signup Database Setup
+# Dosha Test — Connect Your Private Signup Database (≈3 min)
 
-This connects the dosha quiz to a **private Google Sheet** that only *you* (nurturingshala@gmail.com)
-can see. Every time someone fills in their name + email **and ticks the consent box**, a new
-timestamped row appears in your Sheet. You can then email those people about workshops whenever you like.
+This links the quiz to a **private Google Sheet** only *you* (nurturingshala@gmail.com) can see.
+When someone fills in name + email **and ticks the consent box**, a new timestamped row appears.
+The script **creates the Sheet for you automatically** — you don't make it by hand.
 
-It's free, takes about 5 minutes, and you only do it **once**.
-
----
-
-## Step 1 — Create the Sheet
-
-1. Go to <https://sheets.google.com> (signed in as **nurturingshala@gmail.com**).
-2. Create a **Blank spreadsheet**. Name it e.g. **`Dosha Test Signups`**.
-3. In **row 1**, type these headers (one per column, A–H):
-
-   | A | B | C | D | E | F | G | H |
-   |---|---|---|---|---|---|---|---|
-   | Date | Name | Email | Consent | Dosha | Vata % | Pitta % | Kapha % |
+Do this once. You only need to paste me **one URL** at the end and I'll finish the rest.
 
 ---
 
-## Step 2 — Add the script
+## Step 1 — Open Apps Script
 
-1. In that Sheet, click **Extensions → Apps Script**.
-2. Delete whatever code is in the editor, and paste this in:
+1. Make sure you're signed in as **nurturingshala@gmail.com**.
+2. Go to **<https://script.google.com>** → click **New project**.
+3. Delete any code shown, and paste **all** of this in:
 
 ```javascript
 function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-  var data = JSON.parse(e.postData.contents);
+  var sheet = getSheet_();
+  var d = JSON.parse(e.postData.contents);
   sheet.appendRow([
-    new Date(),
-    data.name || "",
-    data.email || "",
-    data.consent ? "Yes" : "No",
-    data.dosha || "",
-    data.vata || "",
-    data.pitta || "",
-    data.kapha || ""
+    new Date(), d.name || "", d.email || "", d.consent ? "Yes" : "No",
+    d.dosha || "", d.vata || "", d.pitta || "", d.kapha || ""
   ]);
   return ContentService.createTextOutput("ok");
 }
+
+function getSheet_() {
+  var props = PropertiesService.getScriptProperties();
+  var id = props.getProperty("SHEET_ID");
+  var ss;
+  if (id) {
+    ss = SpreadsheetApp.openById(id);
+  } else {
+    ss = SpreadsheetApp.create("Dosha Test Signups");
+    ss.getSheets()[0].appendRow(
+      ["Date", "Name", "Email", "Consent", "Dosha", "Vata %", "Pitta %", "Kapha %"]
+    );
+    props.setProperty("SHEET_ID", ss.getId());
+  }
+  return ss.getSheets()[0];
+}
 ```
 
-3. Click the **Save** icon (💾).
+4. Click the **Save** icon (💾). Name the project anything, e.g. `Dosha Signups`.
 
 ---
 
-## Step 3 — Publish it as a web app
+## Step 2 — Publish it as a web app
 
-1. Top right, click **Deploy → New deployment**.
+1. Top right: **Deploy → New deployment**.
 2. Click the gear ⚙ next to "Select type" → choose **Web app**.
 3. Set:
-   - **Description:** `Dosha signups`
    - **Execute as:** **Me (nurturingshala@gmail.com)**
    - **Who has access:** **Anyone**
-     *(This only means the form can post into your private sheet — it does NOT make the sheet public. Nobody can read your data.)*
+     *(This only lets the form drop data INTO your private Sheet — it does NOT make your Sheet public. No one can read your data.)*
 4. Click **Deploy**.
-5. Google will ask you to **Authorize access** → choose your account → if you see "Google hasn't verified this app", click **Advanced → Go to (your project) → Allow**. (This is normal for your own scripts.)
-6. Copy the **Web app URL** it gives you. It looks like:
-   `https://script.google.com/macros/s/AKfycb..../exec`
+5. It will ask you to **Authorize access** → pick your account → if you see
+   "Google hasn't verified this app", click **Advanced → Go to Dosha Signups (unsafe) → Allow**.
+   *(This is normal — it's your own script.)*
+6. Copy the **Web app URL** it shows. It looks like:
+   `https://script.google.com/macros/s/AKfycb....../exec`
 
 ---
 
-## Step 4 — Paste the URL into the quiz
+## Step 3 — Send me that URL
 
-1. Open **`dosha-test.html`**.
-2. Near the top of the `<script>` section find this line:
+Paste the Web app URL back into the chat and I'll:
+- drop it into `dosha-test.html` for you,
+- and give you the one-line command to publish.
 
-   ```javascript
-   const SHEET_ENDPOINT = "";
-   ```
-
-3. Paste your URL between the quotes:
-
-   ```javascript
-   const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycb..../exec";
-   ```
-
-4. Save the file, then re-publish the site (`git push`).
-
-That's it. Do the quiz yourself with a test email + consent ticked, and watch a row appear in your Sheet. 🎉
+Your **"Dosha Test Signups"** sheet will appear in your Google Drive automatically the first
+time someone signs up (or the first time you test it).
 
 ---
 
 ## Using your database
 
-- **Your Sheet is the private dashboard.** Open it anytime to see who signed up and when (the Date column).
-- **To email people:** select the Email column, copy the addresses, and send from Gmail (use BCC for privacy).
-  When the list grows, you can paste it into a free tool like **Mailchimp** or **Brevo** for proper newsletters.
-- Only people who **ticked the consent box** are stored — so everyone in your Sheet has agreed to hear from you.
+- **Your Sheet is the private dashboard** — open it from Google Drive anytime to see who signed up and when.
+- **To email people:** copy the Email column and send from Gmail (use BCC for privacy). As the list grows,
+  paste it into a free tool like **Mailchimp** or **Brevo** for proper newsletters.
+- Only people who **ticked consent** are stored, so everyone in the Sheet has agreed to hear from you.
 
----
-
-## Privacy notes
-
-- The Sheet lives in *your* Google Drive and is private to you.
-- The quiz never shows anyone else's data — each person only sees their own result.
-- If you ever want to stop collecting, just set `SHEET_ENDPOINT = "";` again and re-push.
+## Privacy
+- The Sheet lives in *your* Google Drive, private to you.
+- Each person only ever sees their own result.
+- To pause collecting, tell me and I'll set the endpoint back to empty.
