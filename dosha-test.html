@@ -375,7 +375,7 @@
                         <span class="chip p"><span class="dot"></span>Pitta &middot; Fire + Water</span>
                         <span class="chip k"><span class="dot"></span>Kapha &middot; Earth + Water</span>
                     </div>
-                    <p class="meta-line">18 reflective questions &middot; about 10 minutes &middot; answer as you've felt over the last few years</p>
+                    <p class="meta-line">24 reflective questions &middot; about 10 minutes &middot; answer as you've felt over the last few years</p>
                     <div class="btn-row">
                         <button class="btn" onclick="goDetails()">Begin the quiz &rarr;</button>
                     </div>
@@ -411,7 +411,7 @@
             <section class="screen" id="screen-quiz">
                 <div class="progress-head">
                     <div class="progress-meta">
-                        <span class="step" id="step-counter">Question 1 of 18</span>
+                        <span class="step" id="step-counter">Question 1 of 24</span>
                         <span class="sect" id="section-label">Body</span>
                     </div>
                     <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
@@ -465,9 +465,14 @@
             { d:"k", t:"Sturdy and broad, with large solid bones; I build muscle and carry weight easily." } ] },
 
         { section: "Body", emoji: "✨", q: "How would you describe your skin?", o: [
-            { d:"v", t:"Dry, thin and cool, sometimes rough; it can have uneven pigmentation." },
-            { d:"p", t:"Warm with a healthy blush; prone to freckles, moles, redness or sensitivity." },
-            { d:"k", t:"Smooth, soft, moist and cool, with an even complexion." } ] },
+            { d:"v", t:"Dry, thin and cool, sometimes rough." },
+            { d:"p", t:"Warm and soft, sometimes oily; it can be sensitive or quick to redden." },
+            { d:"k", t:"Smooth, soft, moist and cool." } ] },
+
+        { section: "Body", emoji: "🌸", q: "How would you describe your complexion?", o: [
+            { d:"v", t:"Uneven or darker in tone; my skin tans easily." },
+            { d:"p", t:"Fair or rosy with a warm glow; freckles, moles or a tendency to redden." },
+            { d:"k", t:"Even, clear and luminous." } ] },
 
         { section: "Body", emoji: "💇", q: "How would you describe your hair?", o: [
             { d:"v", t:"Fine, dry and a little frizzy or brittle." },
@@ -489,6 +494,11 @@
             { d:"p", t:"I sweat easily and a lot; my odour can be strong." },
             { d:"k", t:"I sweat moderately, with little noticeable odour." } ] },
 
+        { section: "Body", emoji: "💓", q: "Sit quietly, take a few slow breaths, then feel the pulse at your wrist — how does it feel? (best without recent caffeine, exercise or excitement)", o: [
+            { d:"v", t:"Quick and faint, with no clear rhythm — it slithers like a snake." },
+            { d:"p", t:"Strong and regular, with an active beat — it hops like a frog." },
+            { d:"k", t:"Full, slow and steady — it glides like a swan." } ] },
+
         { section: "Body", emoji: "⚖️", q: "How is your weight?", o: [
             { d:"v", t:"Below average; I find it hard to gain weight and lose it easily." },
             { d:"p", t:"Average; I can gain or lose weight fairly easily." },
@@ -503,6 +513,16 @@
             { d:"v", t:"Variable and irregular — strong one moment, forgotten the next." },
             { d:"p", t:"Strong and sharp; I get irritable if I have to wait to eat." },
             { d:"k", t:"Steady but mild; I can comfortably skip a meal." } ] },
+
+        { section: "Body", emoji: "🔥", q: "How is your digestion after eating?", o: [
+            { d:"v", t:"Irregular — I can feel bloated or windy, and hunger soon returns." },
+            { d:"p", t:"Strong and quick — I digest almost anything and feel hungry again before long." },
+            { d:"k", t:"Slow and heavy — I can feel full or sluggish for a long time after a meal." } ] },
+
+        { section: "Body", emoji: "🌀", q: "How are your bowel movements?", o: [
+            { d:"v", t:"Less than once a day; dry and hard, with a tendency to wind or constipation." },
+            { d:"p", t:"More than once a day; soft and plentiful, sometimes loose." },
+            { d:"k", t:"Regular, about once a day; well-formed and steady." } ] },
 
         { section: "Body", emoji: "🌦️", q: "Which climate suits you best?", o: [
             { d:"v", t:"Warm and still — I dislike cold, wind and dryness." },
@@ -529,6 +549,11 @@
             { d:"p", t:"Clear, sharp and analytical; I love to plan." },
             { d:"k", t:"Steady and methodical; I'm slow to change my mind." } ] },
 
+        { section: "Mind & Lifestyle", emoji: "💗", q: "How do you experience your emotions?", o: [
+            { d:"v", t:"My moods shift quickly; I have strong likes and dislikes." },
+            { d:"p", t:"When provoked my feelings run strong, but I forgive easily." },
+            { d:"k", t:"My mood is steady and even; once hurt, I find it hard to let go." } ] },
+
         { section: "Mind & Lifestyle", emoji: "🌊", q: "Under stress, you tend to feel…", o: [
             { d:"v", t:"Anxious, worried or insecure." },
             { d:"p", t:"Irritable, impatient or quick to anger." },
@@ -538,6 +563,11 @@
             { d:"v", t:"I adapt easily — change suits my nature." },
             { d:"p", t:"I take it on as a challenge to master." },
             { d:"k", t:"I resist it; I prefer a steady, familiar routine." } ] },
+
+        { section: "Mind & Lifestyle", emoji: "📚", q: "How do you find learning new things?", o: [
+            { d:"v", t:"I learn very quickly when I focus." },
+            { d:"p", t:"I have a sharp intellect and concentrate well." },
+            { d:"k", t:"I take my time to learn, and it tends to stay with me." } ] },
 
         { section: "Mind & Lifestyle", emoji: "🧠", q: "How is your memory?", o: [
             { d:"v", t:"I learn fast but forget fast — strong short-term, weaker long-term." },
@@ -618,9 +648,15 @@
         bulb:'<path d="M9.5 17.5h5M10.5 20.5h3M12 3a6 6 0 0 0-3.8 10.6c.7.6 1.1 1.3 1.2 2.4h5.2c.1-1.1.5-1.8 1.2-2.4A6 6 0 0 0 12 3z"/>',
         bolt:'<path d="M13 2.5L5 13.5h5.5L9.5 21.5 19 10h-6z"/>',
         download:'<path d="M12 3v12M7 11l5 5 5-5M5 20h14"/>',
-        retake:'<path d="M3.5 9a8 8 0 0 1 13.4-3.2L20 9M20 4.5V9h-4.5"/><path d="M20.5 15a8 8 0 0 1-13.4 3.2L4 15M4 19.5V15h4.5"/>'
+        retake:'<path d="M3.5 9a8 8 0 0 1 13.4-3.2L20 9M20 4.5V9h-4.5"/><path d="M20.5 15a8 8 0 0 1-13.4 3.2L4 15M4 19.5V15h4.5"/>',
+        glow:'<circle cx="12" cy="12" r="7.5"/><path d="M9 14.5a4.2 4.2 0 0 0 6 0"/><path d="M9.2 10.2h.01M14.8 10.2h.01"/>',
+        pulse:'<path d="M2.5 12.5h4l1.5-4 3 8.5 2-10 2 5.5h4.5"/>',
+        flame:'<path d="M12 2.5c1.3 4.3 5 5.4 5 9.6a5 5 0 0 1-10 0c0-2.3 1.2-3.4 2.3-4.4.4 1.8 1.6 2.4 2.7 2.4.6-2.3-.8-4.7 0-7.6z"/>',
+        clock:'<circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/>',
+        heart:'<path d="M12 20.3C5.4 16 3.8 11.7 5.6 8.6A3.9 3.9 0 0 1 12 7.2a3.9 3.9 0 0 1 6.4 1.4c1.8 3.1.2 7.4-6.4 11.7z"/>',
+        book:'<path d="M12 6.5C10.5 5 8 4.5 4.5 5v12c3.5-.5 6 0 7.5 1.5M12 6.5c1.5-1.5 4-2 7.5-1.5v12c-3.5-.5-6 0-7.5 1.5M12 6.5v12"/>'
     };
-    const QICON = ["body","sparkle","hair","joint","lips","drop","scale","moon","bowl","sun","leaf","activity","speech","think","waves","refresh","bulb","bolt"];
+    const QICON = ["body","sparkle","glow","hair","joint","lips","drop","pulse","scale","moon","bowl","flame","clock","sun","leaf","activity","speech","think","heart","waves","refresh","book","bulb","bolt"];
     function svgIcon(name, sw) {
         return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (sw||1.7) + '" stroke-linecap="round" stroke-linejoin="round">' + (ICONS[name] || '') + '</svg>';
     }
