@@ -85,10 +85,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Feature image-rich cards (those with a photo slideshow) first in the carousel
-        pastGrid.querySelectorAll('.event-card .slideshow-container').forEach(sc => {
-            pastGrid.prepend(sc.closest('.event-card'));
-        });
+        // Order past events most-recent first
+        [...pastGrid.querySelectorAll('.event-card')]
+            .sort((a, b) => new Date(b.getAttribute('data-end-date')) - new Date(a.getAttribute('data-end-date')))
+            .forEach(card => pastGrid.appendChild(card));
 
         // Toggle visibility based on content
         if (pastEventsCount > 0) {
