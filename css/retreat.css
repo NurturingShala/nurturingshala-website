@@ -1,0 +1,56 @@
+.retreat-page { color:#293b30; background:#faf8f3; font-family:Arial,sans-serif; letter-spacing:0; }
+.wrap { max-width:1080px; margin:auto; padding-left:28px; padding-right:28px; }
+.draft-banner { background:#eadfc9; color:#493d2c; text-align:center; padding:10px 20px; font-size:13px; }
+.retreat-header { display:flex; justify-content:space-between; align-items:center; gap:20px; padding-top:24px; padding-bottom:24px; }
+.retreat-header a { color:inherit; text-decoration:none; font-size:14px; }
+.brand { display:flex; align-items:center; gap:12px; font-weight:bold; }
+.brand img { object-fit:contain; }
+.eyebrow { font-size:12px; letter-spacing:.15em; text-transform:uppercase; font-weight:bold; margin-bottom:20px; color:#576c59; }
+.retreat-hero { padding-top:64px; padding-bottom:60px; }
+.retreat-page h1,.retreat-page h2,.retreat-page h3 { font-family:Georgia,serif; font-weight:normal; color:#293b30; }
+.retreat-page h1 { font-size:clamp(72px,10vw,120px); line-height:.96; letter-spacing:-.055em; margin-bottom:28px; }
+.retreat-page h1 em { color:#6a8067; font-weight:normal; }
+.subtitle { font-size:clamp(20px,3vw,28px); max-width:640px; line-height:1.4; }
+.hero-copy { margin-top:18px; color:#59645a; max-width:550px; }
+.facts { border-top:1px solid #d6d9cb; margin-top:48px; padding-top:26px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:28px; font-size:14px; }
+.facts span { display:block; color:#697365; font-size:12px; text-transform:uppercase; letter-spacing:.1em; margin-bottom:8px; }
+.facts strong { font-weight:600; }
+.soft-section { background:#e9ecdf; padding:64px 0; }
+.intro-grid,.details-grid { display:grid; grid-template-columns:1fr 1fr; gap:70px; }
+.retreat-page h2 { font-size:clamp(32px,4vw,44px); line-height:1.15; margin:0 0 24px; text-align:left; }
+.intro-grid p+p { margin-top:18px; }
+.rooms-section { padding-top:70px; padding-bottom:64px; }
+.section-intro { max-width:720px; color:#59645a; }
+.room-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:32px; }
+.room-card { background:#fffdf8; border:1px solid #d6d9cb; border-radius:18px; padding:32px; display:flex; flex-direction:column; }
+.room-card .eyebrow { margin-bottom:10px; }
+.retreat-page h3 { font-size:30px; line-height:1.3; margin-bottom:18px; }
+.price { font-size:34px; color:#293b30; margin-bottom:20px; }
+.price span { display:block; font-size:13px; color:#697365; }
+.room-card>p:not(.price):not(.eyebrow) { color:#59645a; font-size:14px; }
+.room-card ul { padding:22px 0 28px 18px; font-size:14px; }
+.room-card li { margin-bottom:10px; }
+.room-card button { width:100%; border:0; padding:16px; margin-top:auto; border-radius:7px; background:#e6e9df; color:#52624e; font-size:15px; cursor:not-allowed; }
+.booking-note { text-align:center; font-size:13px; color:#59645a; margin-top:22px; }
+.detail-list details { border-bottom:1px solid #cbd2c0; padding:16px 0; }
+.detail-list details:first-child { padding-top:0; }
+.detail-list summary { cursor:pointer; font-weight:600; }
+.detail-list p { font-size:14px; margin-top:12px; }
+.contact-block { padding-top:70px; padding-bottom:70px; }
+.contact-link { display:inline-block; margin-top:22px; padding:14px 22px; background:#354e3e; border-radius:6px; color:#fff; text-decoration:none; }
+.retreat-footer { border-top:1px solid #d6d9cb; padding-top:24px; padding-bottom:24px; color:#697365; font-size:12px; }
+.retreat-page a:focus-visible,.retreat-page summary:focus-visible { outline:3px solid #846b32; outline-offset:5px; }
+@media(max-width:650px) { .wrap{padding-left:22px;padding-right:22px}.retreat-header>a:last-child{font-size:12px}.brand{font-size:13px!important}.brand img{width:36px;height:36px}.retreat-hero{padding-top:36px}.facts,.intro-grid,.details-grid,.room-grid{grid-template-columns:1fr;gap:24px}.facts{gap:20px}.soft-section{padding:44px 0}.room-card{padding:26px}.rooms-section,.contact-block{padding-top:48px;padding-bottom:48px} }
+
+.test-link { display:block; margin-top:14px; text-align:center; font-size:12px; color:#52624e; text-underline-offset:3px; }
+
+.brand img { filter:brightness(0) saturate(100%) invert(35%) sepia(15%) saturate(550%) hue-rotate(85deg); }
+/* Website event extension */
+.event-section{padding-top:60px;padding-bottom:60px}.event-section p,.intro-grid p{margin-bottom:18px}.event-photo{margin-bottom:60px}.event-photo img{width:100%;max-height:520px;object-fit:cover;border-radius:14px}.event-photo figcaption,.event-gallery figcaption{font-size:12px;color:#697365;margin-top:8px}.event-list{padding-left:20px}.event-list li{margin-bottom:16px}.event-gallery{display:grid;grid-template-columns:1fr 1fr;gap:24px}.event-gallery img{width:100%;height:290px;object-fit:cover;border-radius:12px}.rhythm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.room-card .contact-link{margin-top:24px;text-align:center}.rooms-section>p:last-child{margin-top:24px;font-size:14px}.retreat-page img{max-width:100%}.retreat-page{margin:0}figure{margin:0}html{scroll-behavior:smooth}#booking{scroll-margin-top:20px}
+@media(max-width:650px){.event-gallery,.rhythm-grid{grid-template-columns:1fr}.event-gallery img{height:auto}.event-section{padding-top:40px;padding-bottom:40px}.event-photo{margin-bottom:40px}.event-photo img{max-height:none}.retreat-header .brand{font-size:13px}.event-list{padding-left:18px}}
+/* Booking and payment details */
+.early-bird-note{margin-top:20px;background:#e9ecdf;padding:12px 18px;border-radius:6px;font-weight:600}.payment-plan{margin-top:40px;padding:28px;border-left:3px solid #6a8067;background:#e9ecdf}.payment-plan ol{padding-left:22px}.payment-plan li+li{margin-top:14px}.reservation-panel{margin-top:38px;padding:32px;background:#fffdf8;border:1px solid #d6d9cb;border-radius:18px;display:grid;grid-template-columns:1fr 1fr;gap:40px}.reservation-panel label{display:block;font-weight:600;margin-bottom:8px}.reservation-panel select{width:100%;font:inherit;padding:12px;border:1px solid #83937c;border-radius:6px;color:#293b30;background:white}.reservation-panel select:focus-visible{outline:3px solid #846b32;outline-offset:3px}.reservation-panel dl{margin:20px 0}.reservation-panel dl div{display:flex;justify-content:space-between;gap:20px;padding:8px 0;border-bottom:1px solid #e0e2d8}.reservation-panel dd{font-weight:600;white-space:nowrap}.reservation-panel .contact-link{width:100%;text-align:center}.booking-small{font-size:13px;margin-top:16px}.booking-small a{color:#354e3e}.retreat-header .brand{font-size:16px}#reserve{scroll-margin-top:24px}.retreat-page .contact-link:hover{background:#263c2d}.retreat-page .event-gallery{margin-top:28px}
+@media(max-width:650px){.reservation-panel{grid-template-columns:1fr;padding:24px;gap:24px}.payment-plan{padding:24px}.retreat-page .brand{max-width:65%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.brochure-link{display:inline-block;margin:22px 0 0 20px;color:#354e3e;text-underline-offset:4px}@media(max-width:650px){.brochure-link{margin-left:0;display:block}}
