@@ -54,3 +54,73 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .brochure-link{display:inline-block;margin:22px 0 0 20px;color:#354e3e;text-underline-offset:4px}@media(max-width:650px){.brochure-link{margin-left:0;display:block}}
+
+/* Calm editorial layout: photography and short passages set the pace. */
+.retreat-page{font-family:'Poppins',Arial,sans-serif;font-size:14px;line-height:1.9}
+.retreat-page h1,.retreat-page h2,.retreat-page h3{font-family:'Playfair Display',Georgia,serif}
+.retreat-header{border-bottom:1px solid #e0e2d8}
+.retreat-hero{padding-top:48px;padding-bottom:56px}
+.hero-intro{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.retreat-page h1{font-size:clamp(66px,8vw,96px);line-height:1.06;letter-spacing:-.04em;margin-bottom:22px}
+.hero-copy{max-width:370px;margin-top:20px}
+.teacher-line{font-size:12px;color:#59645a;margin-top:20px}
+.hero-image-retreat img{width:100%;height:460px;object-fit:cover;border-radius:2px}
+.retreat-page figcaption{font-size:11px;color:#657060;margin-top:10px;line-height:1.7}
+.retreat-page .eyebrow{font-size:10px;letter-spacing:.13em;font-weight:500}
+.retreat-page a:not(.contact-link){color:#354e3e}
+.text-link{display:inline-block;font-size:13px;text-decoration:none;border-bottom:1px solid #8a9781;padding:7px 0;margin-top:16px}
+.text-link span{margin-left:12px}
+.text-link:hover{border-color:#354e3e}
+.soft-section{background:#eff0e8;padding:64px 0}
+.facts{margin-top:40px;font-size:12px}
+.facts strong{font-weight:500}.facts span{font-size:10px}.facts p{color:#657060}
+.practice-section{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding-top:72px;padding-bottom:72px}
+.studio-photo{display:block;width:100%;height:560px;object-fit:cover;border-radius:2px}
+.practice-note{padding:20px 0;border-top:1px solid #d6d9cb}
+.practice-note h3{font-size:24px;margin-bottom:8px}.practice-note p{margin-bottom:0;color:#59645a}
+.place-gallery{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;margin-top:36px}
+.place-gallery img{width:100%;height:330px;object-fit:cover;border-radius:2px}
+.teacher-grid{margin-top:32px}.teacher-grid h3{font-size:27px}
+.retreat-page .event-gallery{margin-top:40px}.event-gallery img{border-radius:2px}
+.room-grid{gap:18px}.room-card{border-radius:3px;padding:28px}
+.room-card h3{font-size:26px}.room-card .contact-link{background:transparent;color:#354e3e;border:1px solid #b0baa7;padding:10px 16px;border-radius:3px;margin-top:auto}
+.room-card>p:not(.price):not(.eyebrow){margin-bottom:22px}
+.room-card .contact-link:hover{background:#eff0e8}
+.price{font-size:30px;margin-bottom:14px}.price span{font-size:12px}
+.early-bird-note{background:transparent;border-left:2px solid #b0baa7;border-radius:0;font-size:13px;font-weight:400;padding:4px 16px}
+.payment-plan{background:transparent;border-left:0;border-top:1px solid #d6d9cb;padding:28px 0 0;font-size:13px}
+.payment-plan h3{font-size:27px}.payment-plan strong{font-weight:500}
+.reservation-panel{border-radius:3px}.booking-small{font-size:12px}.reservation-panel h3{font-size:27px}
+.detail-list details{padding:19px 0}.detail-list details:first-child{padding-top:19px}.detail-list summary{font-weight:500;font-size:14px;cursor:pointer}.detail-list p{font-size:13px}
+.contact-block{text-align:center;padding-top:64px;padding-bottom:64px}.contact-block h2{text-align:center}.contact-block p{color:#59645a}
+.retreat-footer{display:flex;justify-content:space-between;gap:16px;font-size:11px}.retreat-footer a{text-underline-offset:4px}
+#experience{scroll-margin-top:24px}
+@media(max-width:760px){.hero-intro{gap:28px}.hero-image-retreat img{height:380px}.practice-section{gap:32px}.studio-photo{height:490px}.place-gallery{gap:14px}.place-gallery img{height:260px}}
+@media(max-width:650px){.retreat-page{font-size:13px}.hero-intro,.practice-section{grid-template-columns:1fr}.hero-image-retreat img{height:340px}.retreat-hero{padding-top:32px}.retreat-page h1{font-size:70px}.facts{gap:18px}.facts>div{border-bottom:1px solid #e0e2d8;padding-bottom:14px}.facts>div:last-child{border:0}.practice-section{padding-top:44px;padding-bottom:44px}.studio-photo{height:auto;max-height:520px}.place-gallery{grid-template-columns:1fr 1fr;gap:20px 14px}.place-gallery figure:last-child{grid-column:1/-1}.place-gallery img{height:230px}.place-gallery figure:last-child img{height:auto}.soft-section{padding:44px 0}.retreat-footer{flex-direction:column;gap:8px}.reservation-panel dl div{gap:12px}.contact-block br{display:none}}
+
+/* A personal introduction, with a glimpse of practice and nature. */
+.hero-photo-story{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px;min-width:0}
+.hero-photo-story figure{min-width:0}
+.hero-photo-story img{display:block;width:100%;object-fit:cover;border-radius:2px}
+.hero-photo-story .hero-studio{grid-column:1/-1}
+.hero-studio img{height:285px;object-position:50% 47%}
+.hero-teacher img,.hero-green img{height:166px}
+.hero-teacher img{object-position:53% 38%}
+.hero-green img{object-position:center 47%}
+.hero-photo-story figcaption{font-size:10px;margin-top:7px}
+.place-gallery .gallery-landscape{grid-column:span 2}
+@media(max-width:760px) and (min-width:651px){.hero-studio img{height:265px}.hero-teacher img,.hero-green img{height:145px}.hero-photo-story figcaption{font-size:9px}}
+@media(max-width:650px){.hero-photo-story{gap:16px 12px}.hero-studio img{height:280px}.hero-teacher img,.hero-green img{height:155px}.place-gallery figure:last-child{grid-column:1/-1}.place-gallery .gallery-landscape img{height:auto}.hero-photo-story figcaption{font-size:10px}}
+
+/* Workshop photographs and attributed reflections keep the practice tangible. */
+.practice-with-photo{row-gap:32px}
+.workshop-practice-photo,.workshop-reflections{grid-column:1/-1}
+.workshop-practice-photo img{display:block;width:100%;height:auto;border-radius:2px}
+.workshop-reflections{padding-top:12px}
+.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.workshop-review{border-top:1px solid #d6d9cb;padding-top:22px}
+.workshop-review blockquote{margin:0}
+.workshop-review blockquote p{font-family:'Playfair Display',Georgia,serif;font-size:23px;line-height:1.55;color:#354e3e;margin:0 0 18px}
+.retreat-page .workshop-review figcaption{font-size:11px;line-height:1.9}
+.workshop-review a{display:inline-block;margin-top:8px;text-underline-offset:4px}
+@media(max-width:650px){.practice-with-photo{row-gap:24px}.review-grid{grid-template-columns:1fr;gap:28px}.workshop-review blockquote p{font-size:21px}}
