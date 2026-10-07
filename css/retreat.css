@@ -124,3 +124,20 @@
 .retreat-page .workshop-review figcaption{font-size:11px;line-height:1.9}
 .workshop-review a{display:inline-block;margin-top:8px;text-underline-offset:4px}
 @media(max-width:650px){.practice-with-photo{row-gap:24px}.review-grid{grid-template-columns:1fr;gap:28px}.workshop-review blockquote p{font-size:21px}}
+
+/* Clear routes through the longer brochure-led retreat details. */
+.hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px 20px;margin-top:6px}
+.hero-actions .contact-link{font-size:13px;padding:11px 18px}.hero-actions .text-link{font-size:12px}
+.facts{grid-template-columns:repeat(4,1fr);gap:24px}
+.retreat-section-nav{display:flex;flex-wrap:wrap;gap:10px 24px;padding-top:16px;padding-bottom:24px;font-size:12px}
+.retreat-section-nav a{text-decoration:none;border-bottom:1px solid #c4ccbc;padding:6px 0}
+.retreat-section-nav a:hover{border-color:#354e3e}
+.travel-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:32px}
+.travel-grid h3{font-size:27px}.travel-grid a{text-underline-offset:4px;font-size:13px}
+.retreat-inclusions .event-list{font-size:14px}.retreat-inclusions h3{font-size:27px}
+.price span+span{margin-top:10px;line-height:1.8;font-size:11px}
+#teachers,#setting,#travel,#questions,#practice-title{scroll-margin-top:24px}
+.skip-link{position:absolute;left:12px;top:0;transform:translateY(-120%);padding:12px 20px;background:white;z-index:100}
+.skip-link:focus{transform:translateY(0)}
+@media(max-width:760px){.facts{grid-template-columns:1fr 1fr}.travel-grid{gap:28px}}
+@media(max-width:650px){.facts{grid-template-columns:1fr 1fr;gap:18px 16px}.facts>div{border:0;padding:0}.retreat-section-nav{gap:6px 18px}.travel-grid{grid-template-columns:1fr;gap:24px}.retreat-inclusions .event-list{font-size:13px}.hero-actions{gap:4px 18px}}

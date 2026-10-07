@@ -17,9 +17,6 @@
 @media(max-width:1200px){.retreat-feature{margin-left:24px;margin-right:24px}}
 @media(max-width:768px){.retreat-feature{grid-template-columns:1fr;margin:107px 16px 24px}.retreat-feature-copy{padding:30px 26px}.retreat-feature h1{font-size:44px}.retreat-feature-photo{min-height:210px}.retreat-feature-photo img{object-position:center 55%}.hero.with-image{min-height:500px}}
 
-.retreat-feature-pair{min-height:390px}
-.retreat-feature-pair .feature-studio{object-position:center 44%}
-.feature-teacher{position:absolute;bottom:22px;right:22px;width:155px;margin:0;padding:6px;background:#faf8f3}
-.retreat-feature-pair .feature-teacher img{position:static;display:block;width:100%;height:110px;object-fit:cover;object-position:center 38%}
-.feature-teacher figcaption{font-size:10px;padding:6px 2px 1px;color:#354e3e}
-@media(max-width:768px){.retreat-feature-pair{min-height:300px}.feature-teacher{width:130px;bottom:16px;right:16px}.retreat-feature-pair .feature-teacher img{height:95px}}
+.retreat-feature-portrait{min-height:380px;background:#e4e5dc}
+.retreat-feature-portrait img{object-position:54% 36%}
+@media(max-width:768px){.retreat-feature-portrait{min-height:0;aspect-ratio:448/338}.retreat-feature-portrait img{object-position:center}}
