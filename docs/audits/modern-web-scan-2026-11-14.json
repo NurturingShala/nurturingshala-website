@@ -1,0 +1,182 @@
+{
+  "targetDir": ".",
+  "totalFindings": 12,
+  "guides": [
+    {
+      "guideId": "custom-text-decorations",
+      "retrieveCommand": "npx modern-web-guidance retrieve custom-text-decorations",
+      "count": 2,
+      "rules": [
+        {
+          "ruleId": "custom-text-decorations",
+          "summary": "Use native CSS text-decoration shorthand, text-decoration-thickness, and text-underline-offset instead of border-bottom and padding-bottom underline hacks.",
+          "verifierRubric": {
+            "keepWhen": [
+              "CSS border-bottom and padding-bottom underline simulation on inline text or link selectors paired with text-decoration: none",
+              "CSS linear-gradient underline background hacks on inline text or link elements paired with text-decoration: none"
+            ],
+            "dropWhen": [
+              "Block-level container borders (cards, tables, panels, modals, headers, footers)",
+              "Tab navigation component active state indicators (.tab, [role=\"tab\"])",
+              "Rule declaring display: block, flex, or grid",
+              "Rule already declaring text-underline-offset or text-decoration-thickness"
+            ]
+          },
+          "count": 2,
+          "findings": [
+            {
+              "file": "css/retreat.css",
+              "line": 71,
+              "message": "Simulating text underline with border-bottom; native text-decoration with text-underline-offset and text-decoration-thickness avoids box-model side-effects and follows text wrapping.",
+              "lineContent": ".text-link{display:inline-block;font-size:13px;text-decoration:none;border-bottom:1px solid #8a9781;padding:7px 0;margin-top:16px}"
+            },
+            {
+              "file": "css/retreat.css",
+              "line": 133,
+              "message": "Simulating text underline with border-bottom; native text-decoration with text-underline-offset and text-decoration-thickness avoids box-model side-effects and follows text wrapping.",
+              "lineContent": ".retreat-section-nav a{text-decoration:none;border-bottom:1px solid #c4ccbc;padding:6px 0}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "guideId": "customize-scrollbar-color-and-thickness",
+      "retrieveCommand": "npx modern-web-guidance retrieve customize-scrollbar-color-and-thickness",
+      "count": 3,
+      "rules": [
+        {
+          "ruleId": "customize-scrollbar-color-and-thickness",
+          "summary": "Vendor ::-webkit-scrollbar pseudo-elements customize or hide scrollbars; use standard scrollbar-color and scrollbar-width (including scrollbar-width: none) instead.",
+          "verifierRubric": {
+            "keepWhen": [
+              "The CSS rule uses vendor pseudo-elements (::-webkit-scrollbar or ::-webkit-scrollbar-thumb) to customize scrollbar dimensions/thumb colors or to hide scrollbars (display: none, width: 0, height: 0).",
+              "The custom or hidden scrollbar styling is implemented without declaring standard scrollbar-color or scrollbar-width (such as scrollbar-width: none) CSS properties."
+            ],
+            "dropWhen": [
+              "The stylesheet already defines standard scrollbar-width or scrollbar-color properties.",
+              "The rule only resets scrollbar properties using CSS cascade keywords (auto, inherit, initial, unset, revert) or sets transparent thumb backgrounds without hiding ::-webkit-scrollbar.",
+              "The rule sets a CSS gradient (linear-gradient, radial-gradient, -webkit-gradient), image, or box-shadow (-webkit-box-shadow) on ::-webkit-scrollbar-thumb or ::-webkit-scrollbar-track, styles visible ::-webkit-scrollbar-button arrows, or styles ::-webkit-scrollbar thickness when the accompanying ::-webkit-scrollbar-thumb uses gradients, images, box-shadow, backdrop-filter, or transparent backgrounds.",
+              "The rule targets ::-webkit-scrollbar for non-zero sizing without custom thumb styling, or only sets border-radius without color, thickness, or hiding.",
+              "The rule is inside a CSS reset stylesheet, targets a third-party custom JS scrollbar widget container that hides native scrollbars to render synthetic DOM scrollbars, or is inside an @supports not (scrollbar-width: ...) / @supports not (scrollbar-color: ...) fallback block."
+            ]
+          },
+          "count": 3,
+          "findings": [
+            {
+              "file": "social-content-builder.html",
+              "line": 33,
+              "message": "CSS rule uses vendor ::-webkit-scrollbar pseudo-elements to customize scrollbar appearance; add standard scrollbar-color and scrollbar-width (and wrap ::-webkit-scrollbar in @supports not (scrollbar-color: auto)).",
+              "lineContent": "::-webkit-scrollbar {"
+            },
+            {
+              "file": "social-content-builder.html",
+              "line": 39,
+              "message": "CSS rule uses vendor ::-webkit-scrollbar pseudo-elements to customize scrollbar appearance; add standard scrollbar-color and scrollbar-width (and wrap ::-webkit-scrollbar in @supports not (scrollbar-color: auto)).",
+              "lineContent": "::-webkit-scrollbar-thumb {"
+            },
+            {
+              "file": "social-content-builder.html",
+              "line": 43,
+              "message": "CSS rule uses vendor ::-webkit-scrollbar pseudo-elements to customize scrollbar appearance; add standard scrollbar-color and scrollbar-width (and wrap ::-webkit-scrollbar in @supports not (scrollbar-color: auto)).",
+              "lineContent": "::-webkit-scrollbar-thumb:hover {"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "guideId": "icons",
+      "retrieveCommand": "npx modern-web-guidance retrieve icons",
+      "count": 5,
+      "rules": [
+        {
+          "ruleId": "icons",
+          "summary": "CSS rules chaining invert(), sepia(), saturate(), and hue-rotate() filters to recolor icons should be modernized with CSS mask icons (mask: url(...) and background-color: currentColor) or inline SVG fill=\"currentColor\".",
+          "verifierRubric": {
+            "keepWhen": [
+              "A CSS rule chains filter: invert(...) sepia(...) saturate(...) hue-rotate(...) to approximate a specific color on an icon, button graphic, UI indicator, or SVG <img>."
+            ],
+            "dropWhen": [
+              "The filter is applied to photographs, video elements, avatars, or whole-page dark-mode inversion rather than recoloring a single-color UI icon or graphic.",
+              "The stylesheet is a third-party userstyle or browser DevTools theme override (e.g. using :host-context(.-theme-with-dark-background), @-moz-document, or --override-color-* custom properties) where the author does not control the underlying icon DOM or image URL.",
+              "The rule already uses CSS mask / mask-image for icon coloring."
+            ]
+          },
+          "count": 5,
+          "findings": [
+            {
+              "file": "css/retreat.css",
+              "line": 47,
+              "message": "CSS rule chains invert(), sepia(), saturate(), and hue-rotate() filters to approximate a color on an icon or image; modernize with a CSS mask icon and background-color: currentColor (or inline SVG fill=\"currentColor\").",
+              "lineContent": ".brand img { filter:brightness(0) saturate(100%) invert(35%) sepia(15%) saturate(550%) hue-rotate(85deg); }"
+            },
+            {
+              "file": "css/styles.css",
+              "line": 66,
+              "message": "CSS rule chains invert(), sepia(), saturate(), and hue-rotate() filters to approximate a color on an icon or image; modernize with a CSS mask icon and background-color: currentColor (or inline SVG fill=\"currentColor\").",
+              "lineContent": ".main-logo {"
+            },
+            {
+              "file": "social-content-builder.html",
+              "line": 325,
+              "message": "CSS rule chains invert(), sepia(), saturate(), and hue-rotate() filters to approximate a color on an icon or image; modernize with a CSS mask icon and background-color: currentColor (or inline SVG fill=\"currentColor\").",
+              "lineContent": ".slide-logo {"
+            },
+            {
+              "file": "social-content-builder.html",
+              "line": 407,
+              "message": "CSS rule chains invert(), sepia(), saturate(), and hue-rotate() filters to approximate a color on an icon or image; modernize with a CSS mask icon and background-color: currentColor (or inline SVG fill=\"currentColor\").",
+              "lineContent": ".slide.theme-sage .slide-logo {"
+            },
+            {
+              "file": "social-content-builder.html",
+              "line": 411,
+              "message": "CSS rule chains invert(), sepia(), saturate(), and hue-rotate() filters to approximate a color on an icon or image; modernize with a CSS mask icon and background-color: currentColor (or inline SVG fill=\"currentColor\").",
+              "lineContent": ".slide:not(.theme-dark) .slide-logo {"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "guideId": "secure-external-subresources",
+      "retrieveCommand": "npx modern-web-guidance retrieve secure-external-subresources",
+      "count": 2,
+      "rules": [
+        {
+          "ruleId": "secure-external-subresources",
+          "summary": "Add Subresource Integrity (integrity=\"sha384-...\"), crossorigin=\"anonymous\", and referrerpolicy=\"no-referrer\" to versioned third-party CDN <script> and <link rel=\"stylesheet\"> elements.",
+          "verifierRubric": {
+            "keepWhen": [
+              "An HTML or JSX <script src=\"https://...\"> or <link rel=\"stylesheet\" href=\"https://...\"> loads an immutable, version-pinned asset from a public third-party CDN (cdnjs.cloudflare.com, cdn.jsdelivr.net, unpkg.com, code.jquery.com, maxcdn.bootstrapcdn.com, stackpath.bootstrapcdn.com, ajax.googleapis.com) without an integrity attribute.",
+              "An external cross-origin <script src=\"https://...\"> or <link rel=\"stylesheet\" href=\"https://...\"> specifies integrity=\"sha...\" but omits the required crossorigin=\"anonymous\" attribute."
+            ],
+            "dropWhen": [
+              "The <script> or <link> element already includes both an integrity=\"sha256-... | sha384-... | sha512-...\" attribute and a crossorigin attribute.",
+              "The URL points to a mutable/unversioned endpoint (such as analytics tags, live widgets, or Google Fonts CSS) or a first-party same-origin asset."
+            ]
+          },
+          "count": 2,
+          "findings": [
+            {
+              "file": "index.html",
+              "line": 14,
+              "message": "External third-party CDN <link> resource (https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css) lacks Subresource Integrity; add integrity=\"sha384-...\", crossorigin=\"anonymous\", and referrerpolicy=\"no-referrer\".",
+              "lineContent": "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\">"
+            },
+            {
+              "file": "social-content-builder.html",
+              "line": 8,
+              "message": "External third-party CDN <link> resource (https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css) lacks Subresource Integrity; add integrity=\"sha384-...\", crossorigin=\"anonymous\", and referrerpolicy=\"no-referrer\".",
+              "lineContent": "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\">"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "activeRuleCount": 35,
+  "activeGuideCount": 33,
+  "note": "Checked 33 guides (35 deterministic rules; ~20% of the guidance corpus). Finding 12 items here only reflects deterministic legacy patterns; use 'search <topic>' for the rest of the catalog."
+}

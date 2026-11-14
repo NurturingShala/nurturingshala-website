@@ -44,7 +44,6 @@
 
 .test-link { display:block; margin-top:14px; text-align:center; font-size:12px; color:#52624e; text-underline-offset:3px; }
 
-.brand img { filter:brightness(0) saturate(100%) invert(35%) sepia(15%) saturate(550%) hue-rotate(85deg); }
 /* Website event extension */
 .event-section{padding-top:60px;padding-bottom:60px}.event-section p,.intro-grid p{margin-bottom:18px}.event-photo{margin-bottom:60px}.event-photo img{width:100%;max-height:520px;object-fit:cover;border-radius:14px}.event-photo figcaption,.event-gallery figcaption{font-size:12px;color:#697365;margin-top:8px}.event-list{padding-left:20px}.event-list li{margin-bottom:16px}.event-gallery{display:grid;grid-template-columns:1fr 1fr;gap:24px}.event-gallery img{width:100%;height:290px;object-fit:cover;border-radius:12px}.rhythm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.room-card .contact-link{margin-top:24px;text-align:center}.rooms-section>p:last-child{margin-top:24px;font-size:14px}.retreat-page img{max-width:100%}.retreat-page{margin:0}figure{margin:0}html{scroll-behavior:smooth}#booking{scroll-margin-top:20px}
 @media(max-width:650px){.event-gallery,.rhythm-grid{grid-template-columns:1fr}.event-gallery img{height:auto}.event-section{padding-top:40px;padding-bottom:40px}.event-photo{margin-bottom:40px}.event-photo img{max-height:none}.retreat-header .brand{font-size:13px}.event-list{padding-left:18px}}
@@ -68,9 +67,9 @@
 .retreat-page figcaption{font-size:11px;color:#657060;margin-top:10px;line-height:1.7}
 .retreat-page .eyebrow{font-size:10px;letter-spacing:.13em;font-weight:500}
 .retreat-page a:not(.contact-link){color:#354e3e}
-.text-link{display:inline-block;font-size:13px;text-decoration:none;border-bottom:1px solid #8a9781;padding:7px 0;margin-top:16px}
+.text-link{display:inline-block;font-size:13px;text-decoration:underline;text-decoration-color:#8a9781;text-decoration-thickness:1px;text-underline-offset:8px;padding:7px 0;margin-top:16px}
 .text-link span{margin-left:12px}
-.text-link:hover{border-color:#354e3e}
+.text-link:hover{text-decoration-color:#354e3e}
 .soft-section{background:#eff0e8;padding:64px 0}
 .facts{margin-top:40px;font-size:12px}
 .facts strong{font-weight:500}.facts span{font-size:10px}.facts p{color:#657060}
@@ -130,8 +129,8 @@
 .hero-actions .contact-link{font-size:13px;padding:11px 18px}.hero-actions .text-link{font-size:12px}
 .facts{grid-template-columns:repeat(4,1fr);gap:24px}
 .retreat-section-nav{display:flex;flex-wrap:wrap;gap:10px 24px;padding-top:16px;padding-bottom:24px;font-size:12px}
-.retreat-section-nav a{text-decoration:none;border-bottom:1px solid #c4ccbc;padding:6px 0}
-.retreat-section-nav a:hover{border-color:#354e3e}
+.retreat-section-nav a{text-decoration:underline;text-decoration-color:#c4ccbc;text-decoration-thickness:1px;text-underline-offset:7px;padding:6px 0}
+.retreat-section-nav a:hover{text-decoration-color:#354e3e}
 .travel-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:32px}
 .travel-grid h3{font-size:27px}.travel-grid a{text-underline-offset:4px;font-size:13px}
 .retreat-inclusions .event-list{font-size:14px}.retreat-inclusions h3{font-size:27px}
